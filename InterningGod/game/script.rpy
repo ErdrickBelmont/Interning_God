@@ -3,13 +3,13 @@ init python:
     config.quit_action = None
 
 #image resize
-image bg temple = im.Scale("temple.png", 1980, 1080)
-image bg tea house = im.Scale("House in front of a tea field.png", 1980, 1080)
-image bg school = im.Scale("elementary school.png", 1980, 1080)
-image bg market = im.Scale("market.png", 1980, 1080)
-image bg cat = im.Scale("cat.png", 1980, 1080)
-image bg bridge = im.Scale("bridge.png", 1980, 1080)
-image bg food stall = im.Scale("food stall.png", 1980, 1080)
+image bg temple = im.Scale("temple.avif", 1980, 1080)
+image bg tea house = im.Scale("House in front of a tea field.avif", 1980, 1080)
+image bg school = im.Scale("elementary school.avif", 1980, 1080)
+image bg market = im.Scale("market.avif", 1980, 1080)
+image bg cat = im.Scale("cat.avif", 1980, 1080)
+image bg bridge = im.Scale("bridge.avif", 1980, 1080)
+image bg food stall = im.Scale("food stall.avif", 1980, 1080)
 
 image i ancient = im.Scale("intern-ancient.png", 225 * 1.6, 280 * 1.6)
 image gl = im.Scale("child-normal.png", 200 * 1.6, 280 * 1.6)
@@ -267,6 +267,10 @@ label arc2:
     "Come here on a later date again!"
 
 
+
 label end:
     return
+
+label dClockUpdate:
+
 
