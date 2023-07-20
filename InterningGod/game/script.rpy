@@ -3,13 +3,13 @@ init python:
     config.quit_action = None
 
 #image resize
-image bg temple = im.Scale("temple.avif", 1980, 1080)
-image bg tea house = im.Scale("House in front of a tea field.avif", 1980, 1080)
-image bg school = im.Scale("elementary school.avif", 1980, 1080)
-image bg market = im.Scale("market.avif", 1980, 1080)
-image bg cat = im.Scale("cat.avif", 1980, 1080)
-image bg bridge = im.Scale("bridge.avif", 1980, 1080)
-image bg food stall = im.Scale("food stall.avif", 1980, 1080)
+image bg temple = im.Scale("temple.avif", 1920, 1080)
+image bg tea house = im.Scale("House in front of a tea field.avif", 1920, 1080)
+image bg school = im.Scale("elementary school.avif", 1920, 1080)
+image bg market = im.Scale("market.avif", 1920, 1080)
+image bg cat = im.Scale("cat.avif", 1920, 1080)
+image bg bridge = im.Scale("bridge.avif", 1920, 1080)
+image bg food stall = im.Scale("food stall.avif", 1920, 1080)
 
 image i ancient = im.Scale("intern-ancient.png", 225 * 1.6, 280 * 1.6)
 image gl = im.Scale("child-normal.png", 200 * 1.6, 280 * 1.6)
@@ -17,6 +17,26 @@ image gp = im.Scale("grandpa-normal.png", 200 * 1.6, 280 * 1.6)
 image gm = im.Scale("granny-normal.png", 200 * 1.6, 280 * 1.6)
 image i normal = im.Scale("intern-modern.png", 210 * 1.6, 280 * 1.6)
 #prompt for future use: image  = im.Scale(".png",  * 1.6,  * 1.6)
+
+# clock assignments
+
+image clock_face = "clockFace.svg"
+define current_time = 6
+
+image clock_hands = ConditionSwitch(
+    "current_time == 1","1.svg",
+    "current_time == 2","2.svg",
+    "current_time == 3","3.svg",
+    "current_time == 4","4.svg",
+    "current_time == 5","5.svg",
+    "current_time == 6","6.svg",
+    "current_time == 7","7.svg",
+    "current_time == 8","8.svg",
+    "current_time == 9","9.svg",
+    "current_time == 10","10.svg",
+    "current_time == 11","11.svg",
+    "current_time == 12","12.svg")
+
 
 #character definition
 define i = Character("Intern God")
@@ -31,6 +51,7 @@ define right = Position (xalign = 0.85, yalign = 0.7)
 define lower_middle = Position (yalign = 0.75)
 define lower_left = Position (xalign = 0.15, yalign = 0.75)
 define lower_right = Position (xalign = 0.85, yalign = 0.75)
+define upper_right = Position (xalign = 0.95, yalign = 0.02)
 
 
 label start:
@@ -49,8 +70,9 @@ menu:
         jump arc2
 
 label Guoliang_arc:
-
+    
     scene bg tea house
+    call displayClock
     "Taking on my human form, I made my way to a tea farm tended by an old couple. The couple is currently hard at work harvesting tea leaves."
     show i normal at middle
     "These two have been praying every single day for the well-being of their grandson, Guoliang. "
@@ -65,6 +87,7 @@ label Guoliang_arc:
     "I look up to see the grandfather and grandmother marching towards me. She helped her husband walk while she carried a basket full of tea leaves on her back."
     "The grandmother has this stern look on her face, but the grandfather looks rather confused."
     hide gp
+    call clockUpdate
     #show i annoyed at right
     show i normal at right
     "Shoot, was I staring? Do they think I'm a stalker?"
@@ -100,6 +123,7 @@ label Guoliang_arc:
     gp "Is it time to harvest the tea leaves already? Honey? Oh, where did you run off to?"
     gm "Oh for god’s sake."
     hide gm
+    call clockUpdate
     "The grandmother slowly chases after her wandering husband."
     #show i smile
     show i normal at middle
@@ -274,3 +298,13 @@ label end:
 label dClockUpdate:
 
 
+label clockUpdate:
+    $ current_time += 1
+    if current_time == 13:
+        $ current_time = 1
+    return
+
+label displayClock:
+    show clock_face at upper_right
+    show clock_hands at upper_right
+    return
