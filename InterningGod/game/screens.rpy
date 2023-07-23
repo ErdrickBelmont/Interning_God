@@ -9,8 +9,6 @@ init offset = -1
 ## Styles
 ################################################################################
 
-
-
 style default:
     properties gui.text_properties()
     language gui.language

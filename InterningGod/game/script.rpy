@@ -1,42 +1,22 @@
-﻿#diable close project confirmation
+#diable close project confirmation
 init python:
     config.quit_action = None
 
 #image resize
-image bg temple = im.Scale("temple.avif", 1920, 1080)
-image bg tea house = im.Scale("House in front of a tea field.avif", 1920, 1080)
-image bg school = im.Scale("elementary school.avif", 1920, 1080)
-image bg market = im.Scale("market.avif", 1920, 1080)
-image bg cat = im.Scale("cat.avif", 1920, 1080)
-image bg bridge = im.Scale("bridge.avif", 1920, 1080)
-image bg food stall = im.Scale("food stall.avif", 1920, 1080)
+image bg temple = im.Scale("temple.png", 1980, 1080)
+image bg grassy field = im.Scale("House in front of a tea field.png", 1980, 1080)
+image bg school = im.Scale("elementary school.png", 1980, 1080)
+image bg market = im.Scale("market.png", 1980, 1080)
+image bg street = im.Scale("town.png", 1980, 1080)
+image bg river = im.Scale("riverside.png", 1980, 1080)
+image bg grave = im.Scale("grave.png", 1980, 1080)
 
 image i ancient = im.Scale("intern-ancient.png", 225 * 1.6, 280 * 1.6)
 image gl = im.Scale("child-normal.png", 200 * 1.6, 280 * 1.6)
+#image gl mad = im.Scale("child-mad.png", 200 * 1.6, 280 * 1.6)
 image gp = im.Scale("grandpa-normal.png", 200 * 1.6, 280 * 1.6)
 image gm = im.Scale("granny-normal.png", 200 * 1.6, 280 * 1.6)
 image i normal = im.Scale("intern-modern.png", 210 * 1.6, 280 * 1.6)
-#prompt for future use: image  = im.Scale(".png",  * 1.6,  * 1.6)
-
-# clock assignments
-
-image clock_face = "clockFace.svg"
-define current_time = 6
-
-image clock_hands = ConditionSwitch(
-    "current_time == 1","1.svg",
-    "current_time == 2","2.svg",
-    "current_time == 3","3.svg",
-    "current_time == 4","4.svg",
-    "current_time == 5","5.svg",
-    "current_time == 6","6.svg",
-    "current_time == 7","7.svg",
-    "current_time == 8","8.svg",
-    "current_time == 9","9.svg",
-    "current_time == 10","10.svg",
-    "current_time == 11","11.svg",
-    "current_time == 12","12.svg")
-
 
 #character definition
 define i = Character("Intern God")
@@ -51,7 +31,6 @@ define right = Position (xalign = 0.85, yalign = 0.7)
 define lower_middle = Position (yalign = 0.75)
 define lower_left = Position (xalign = 0.15, yalign = 0.75)
 define lower_right = Position (xalign = 0.85, yalign = 0.75)
-define upper_right = Position (xalign = 0.95, yalign = 0.02)
 
 
 label start:
@@ -67,12 +46,11 @@ menu:
     "Help out an old couple":
         jump Guoliang_arc
     "arc 2":
-        jump arc2
+        jump Hana_arc
 
 label Guoliang_arc:
-    
-    scene bg tea house
-    call displayClock
+
+    scene bg grassy field
     "Taking on my human form, I made my way to a tea farm tended by an old couple. The couple is currently hard at work harvesting tea leaves."
     show i normal at middle
     "These two have been praying every single day for the well-being of their grandson, Guoliang. "
@@ -87,7 +65,6 @@ label Guoliang_arc:
     "I look up to see the grandfather and grandmother marching towards me. She helped her husband walk while she carried a basket full of tea leaves on her back."
     "The grandmother has this stern look on her face, but the grandfather looks rather confused."
     hide gp
-    call clockUpdate
     #show i annoyed at right
     show i normal at right
     "Shoot, was I staring? Do they think I'm a stalker?"
@@ -123,7 +100,6 @@ label Guoliang_arc:
     gp "Is it time to harvest the tea leaves already? Honey? Oh, where did you run off to?"
     gm "Oh for god’s sake."
     hide gm
-    call clockUpdate
     "The grandmother slowly chases after her wandering husband."
     #show i smile
     show i normal at middle
@@ -272,39 +248,340 @@ label Guoliang_arc:
     "At the same time, I notice Guoliang staring in the direction of a small toy shop."
     hide i
     hide gl
+    default gl_choice = "gua bao"
     menu:
         "Buy some street food":
+            $ gl_choice = "gua bao"
             scene bg food stall
-            "buy food"
+            "I decide to track down the scent, making sure to also keep Guoliang in my line of sight."
+            "We eventually traced the source of the aroma to a stall that was selling gua bao."
+            #show i smile at left
+            show i normal at left
+            show gl at right
+            i "That looks tasty!"
+            i "What do you think, Guoliang? You like gua bao?"
+            gl "They’re my favorite food."
+            i "Well then, why don’t I get us a couple of bao?"
+            gl "Okay, sure."
+            i "Good."
+            hide gl
+            "I pull out a wallet from my pocket and hand the vendor some cash."
+            i "We’ll take 2, please."
+            "The vendor takes the cash and prepares us some fresh gua bao."
+            "My mouth waters just watching them prepare it. The pork looks so tender and juicy. And the smell."
+            #show i happy at left
+            "*sniff* Ah~ Simply divine!"
+            "Even though gods don’t need to eat, I find it a sin to not partake in human cuisine."
+            "I eagerly take the two buns from the vendor."
+            #show i smile at left
+            i "Thank you!"
+            show gl at right
+            i "Here you go, Guoliang. Eat up!"
+            #show i happy at left
+            hide gl
+            "After handing Guoliang his gua bao, I begin to dig into mine, savoring every bite."
+            "Not even a minute goes by and I’ve already consumed my bao."
+            #show i smile at left
+            i "That was delicious."
+            show gl at right
+            "I look over to Guoliang, who had watched me devour the bao in seconds."
+            "He had not taken a single bite of the bao."
+            show i normal at left
+            i "What’s wrong?"
+            i "You said they’re your favorite."
+            show gl at right
+            gl "Yeah, I did."
+            i "So go ahead and eat it."
+            gl "I can’t."
+            i "Why not?"
+            gl "Because I’m allergic to peanuts!"
+            #show i shocked at left
+            i "Oh! You are? You should have told me."
+            gl "You should’ve asked."
+            #show i nervous at left
+            i "I… okay, fair point."
+            i "Here, I’ll go buy you another one."
+            i "Wait right here, okay?"
+            gl "Okay."
+            hide i
+            hide gl
+            "I go back to the vendor to buy another gua bao for Guoliang… and another one for myself. This time, without peanuts."
+            "I wait behind a father and his son. They seem so happy to be eating together. Classic father-son bonding activities. The father carries his son on his shoulders as they walk away with their bao."
+            "I’m up next."
+            "After paying for the two bao, I return to the spot where I left Guoliang."
+            #show i smile at middle
+            show i normal at middle
+            i "Alrighty, I made sure to ask the guy not to put peanuts this ti-"
+            #show i nervous at middle
+            "I look, but Guoliang is not there."
+            i "Guoliang?"
+            hide i with fade
+            "I look around the area, but there’s no sign of Guoliang."
+            i "{i}Oh no{/i}"
+            i "Me and my captivation for food!"
+            i "{i}I gotta find Guoliang fast!{/i}"
+            i "{i}I can’t make the old couple’s wish come true if I don’t have Guoliang with me!{/i}"
+            hide i
+            "Scarfing down the gua bao I bought, I search the entire area for Guoliang."
         
-        "Buy a toy for them":
-            "buy toy"
+        "Buy a toy for him":
+            scene bg market
+            #show i smile at left
+            show i normal at left
+            show gl at right
+            i "{i}That’s it! Kids love toys! If I buy him a brand new toy, then he’ll surely be happy! …at least, until doomsday arrives…{/i}"
+            i "You want a toy, don’t you?"
+            gl "Huh? What? No I don’t."
+            i "I see you staring at those toys over there. Don’t be shy."
+            gl "I said I do- hey!"
+            "I take Guoliang to the toy store so he can pick out a toy."
+
+            scene bg store
+            #show i smile at left
+            show i normal at left
+            show gl at right
+            i "Go on and pick any toy you want."
+            gl "I told you I don’t want any toys."
+            gl "Besides, toys are for little kids."
+            show i normal at left
+            i "Last I checked, you are one."
+            gl "Grrr."
+            i "Alright, fine. I’ll pick for you."
+            hide i 
+            hide gl
+            "There’s a wide variety of toys here. Which toy should I pick for Guoliang?"
+            default toy = "chě líng"
+            menu:
+                "chě líng":
+                    $ gl_choice = "chě líng"
+                    $ toy = "chě líng"
+                "Spinning top":
+                    $ gl_choice = "Spinning top"
+                    $ toy = "Spinning top"
+            show i normal at middle
+            i "Excuse me. One [toy] for my little boy here, please."
+            "The clerk hands me the [toy]."
+            #show i smile at midddle
+            i "Thank you!"
+            show i normal at left
+            show gl at right
+            "I give the [toy] to Guoliang."
+            i "Here you go. Go on, play with it."
+            gl "Seriously? These toys are so lame."
+            #show i shocked at left
+            i "What? I’ve seen kids your age love playing with these."
+            gl "Yeah cause they’re babies. Only little kids would have fun playing with something so stupid."
+            #show i smile at left
+            i "It’s not stupid. If you know how to do tricks."
+            gl "What tricks?"
+            i "Hehe, watch and learn, kid."
+            hide gl
+            if toy == "chě líng":
+                "I take the chě líng and begin doing all sorts of tricks with it."
+                "I fiddle around with the sticks, making loops and pulling until I get the chě líng to make the shape of a sort of web."
+            
+            if toy == "spinning top":
+                "I take the string from the top and start swinging it around."
+                "Each time I swung it, I wrapped the string around my fingers, making loops until finally…"
+                "The top was dangling in front of the web I made with the string."
+            show gl at right
+            gl "Mmm. Not bad."
+            i "Impressive right? Now watch this."
+            if toy == "chě líng":
+                "I rotate my arms around, keeping the formation of the string."
+                "Wherever I rotated, the chě líng would roll along, never leaving the string."
+                "I heard a little girl laughing."
+                "On my right, I see a little girl and her mom watching me in awe."
+                hide gl
+                i "{i}Time to give everyone the grand finale.{/i}"
+                "To finish my performance, I give the sticks a pull, straightening the string and shooting the chě líng up in the air."
+                "I give the mom and her daughter a smile, then catch the chě líng on the string without looking."
+            if toy == "spinning top":
+                "I sway the top gently a few times before giving it one big swing."
+                "In an instant, my web unravels itself in a fashionable manner. "
+                "I heard a little girl laughing."
+                "On my left, I see a little girl and her mom watching me in awe."
+                hide gl
+                i "{i}Time to give everyone the grand finale.{/i}"
+                "To finish my performance, I twirl the top around me before launching it into the air."
+                "I give the mom and her daughter a smile, then catch the top on the palm of my hand without looking. The top is still spinning when I catch it."
+            "The mom and her daughter clap for me, so I decide to give them a little bow."
+            i "Thank you, thank you!"
+            #shwo i smile at middle
+            i "See that, Guoliang? That’s not so lame now, is it?"
+            "I look around the area, but there’s no sign of Guoliang."
+            show i normal at middle
+            i "Guoliang?"
+            #show i nervous at middle
+            i "{i}Probably should have stopped after the first trick.{/i}"
+            hide i
+            "Seeing as how the little girl was fascinated by my skills, I decide to give her the toy."
+            "She and her mother thank me, and wave goodbye. Now back to the matter at hand."
+            #show i nervous at middle
+            i "{i}I gotta go find Guoliang!{/i}"
+            i "{i}I can’t make the old couple’s wish come true if I don’t have the little rascal with me!{/i}"
+            hide i 
+        
+    scene bg bridge
+    "I spent hours searching the town."
+    "I checked every alley, every store, even went back to the elementary school. No sign of him whatsoever."
+    "I lean against the railing of a bridge in defeat."
+    show i normal at middle
+    #show i tired at middle
+    i "*sigh* I guess this is one prayer I won’t be able to answer…"
+    i "I just hope they don’t come back and haunt this place after they die."
+    hide i
+    gp "What was that, lad?"
+    show i normal at left
+    show gp at right
+    "I turn around to find the grandfather standing right next to me."
+    #show i shocked at left
+    i "Oh! Sir, how long have you been here?"
+    gp "Hah, not very long. I just got here."
+    i "D-did uh, you hear anything I said."
+    gp "What? Did you say something?"
+    #show i nervous at left
+    i "Uh nothing, nothing just… admiring the view."
+    hide i
+    hide gp
+
+    scene bg town
+    gp "Ah… It is a lovely view, ain’t it?"
+    i "Yes. Yes it is."
+    "The two of us stand there in silence."
+    "I don’t want to bring up the fact that I lost their grandson after they trusted me to bring him back home."
+    "But at the same time, it’s a little awkward not saying a word."
+
+    scene bg bridge
+    gp "Guoliang likes to sit by the river just outside of town."
+    i "...what?"
+    show gp at right
+    show i normal at left
+    gp "Anytime he wants to be by himself, he goes outside of town and sits by the river."
+    gp "It’s where he does all of his thinking."
+    i "How… How do you know this?"
+    gp "You came to us to bring Guoliang true happiness, didn’t you?"
+    gp "The gods really did hear our prayers."
+    #show i nervous at left
+    i "I… I uh…"
+    gp "Truth is, that boy misses his parents."
+    gp "He never got to experience what it was like… to have a loving mama and baba."
+    gp "My wife and I tried to love and care for him… as best we could but… there is only so much these old bones can do."
+    show i normal at left
+    i "I… I can imagine."
+    gp "We’re…"
+    gp"We’re not gonna be around much longer… I know it."
+    #show i shocked at left
+    i "I… how do you-"
+    gp "But at the very least, I want our grandson to experience the love of a parent before our time comes."
+    gp"Can you grant us this last wish?"
+    show i normal at left
+    "I don’t know if this old man is delusional, or he saw right through me."
+    "Regardless, I assure him that I’ll do what I am allowed to do for him."
+    #show i smile at left
+    i"Of course."
+    gp"Mmm, good."
+    "The grandfather slowly walks away."
+    hide gp with fade
+    #show i nervous at middle
+    i"What a strange old man."
+    show i normal at middle
+    i"But now I know where to find Guoliang."
+    hide i
+    "After making sure I’m alone, I transform into a bird and fly over to the river to find Guoliang."
+    "... ..."
+    "... ..."
+    gp"Haha… such a fine young man…"
+
+    scene bg riverside
+    "I fly overhead to the river, and after surveying the area, I find Guoliang crouching by the riverside. Just like the old man said."
+    "I land on the road by the river, quickly transforming back into a human."
+    show i normal at middle
+    "I’m about to walk over to Guoliang, but then I stop myself."
+    #show i nervous at left
+    show i normal at left
+    show gl at right
+    "It’s faint, but I can hear Guoliang sniveling."
+    i "{i}Is he crying? Why would he be…{/i}"
+    i "{i}Oh…{/i}"
+    hide gl
+    hide i
+    "I think back to what the old man said."
+    gp "Truth is, that boy misses his parents."
+    gp "He never got to experience what it was like… to have a loving mama and baba."
+    "And the time when I bought him the [gl_choice]."
+    "There was a kid who was spending quality time with their parent at the time."
+    i "{i}I get it now.{/i}"
+    "I approach Guoliang slowly until my shadow is cast over him."
+    show i normal at left
+    show gl at right
+    "Guoliang is still sobbing. He doesn’t seem to have noticed me yet."
+    i "You miss them, don’t you?"
+    gl "Huh!?"
+    "Guoliang quickly turns his head around to see me standing right behind him."
+    "His face was covered in tears, and snot was running from his nose."
+    "Guoliang tries to wipe his face with his arm to hide the fact that he was crying, but it was already too late for that."
+    gl "What are you…"
+    i "Your parents. You just want to be with them, right?"
+    "Guoliang looks away without giving a response."
+    i "Your grandpa told me."
+    "For once, Guoliang doesn’t say anything. He just goes back to staring at the river."
+    "I take a seat next to Guoliang, not saying a word."
+    "He doesn’t try to run away."
+    i "It must be hard for you. Watching all of those kids happily skip around with their mamas and babas."
+    gl "Be quiet!"
+    gl"All those kids talk about how much they love their parents and how amazing they are."
+    gl"Meanwhile I can’t even do much with {i}my{/i} grandparents."
+    gl"Nothing like what I see all my classmates get to do with their parents."
+    gl"I never even got much time with my parents!"
+    gl"My mama died when I was only four, and my baba leaves me here soon after!"
+    show i shocked at left
+    i"He what!?"
+    gl"He hasn’t even come to check in on me in three years."
+    show i normal at middle
+    i"... ..."
+    gl"I miss when baba would let me ride on his shoulders, or play with me. A-and when mama would cook her famous gua bao."
+    gl"*sniff* I thought we would always be one happy family…"
+    gl"Why did they have to leave me? *sniff*"
+    gl"I…I…"
+    hide i
+    gl"I…I JUST WANT MY MAMA AND BABA!"
+    hide gl
+    "Guoliang wails into the setting sun. His cries echo across the valley."
+    "All of the pain, sorrow, anger. Everything he had been holding in until now came flowing out like the river."
+    #show i sad at middle
+    show i normal at middle
+    i"To experience all of this, and at such a young age too…"
+    i"There’s only one thing to do now."
+    hide i
+    i"Gently, I rub Guoliang’s back."
+    show i normal at left
+    show gl at right
+    i"I’m sure your father was just as heartbroken. I mean, he lost the love of his life, and maybe seeing you just brought too much pain for him to bear."
+    "Guoliang continues to weep."
+    i"Look, I don’t know what it’s like to lose both of my parents as a young boy…"
+    i"But I do know that a kid should never have to go through what you experienced. Especially not alone."
+    "Guoliang’s stops crying."
+    i"Even if your parents aren’t here to be with you, there are people who can be."
+    i"People who want nothing more than to see you be happy and live your life to the fullest. Your grandparents, your teacher, the kids at the school, even the fruit vendor." 
+    #show i smile at left
+    i"and me"
+    i"A family doesn’t only have to be people who are related to you. A family can be the people who are there to see you shine in your happiest moments, and are there to lift you up in your darkest hours."
+    i"But above all else, no matter what you do, whether you succeed or fail, they will always love you."
+    i"You just have to let them in."
+
     
-    "write this tomorrow"
+    "To be continued"
 
 
 
     jump end
 
     
-label arc2:
+label Hana_arc:
     "Come here on a later date again!"
-
 
 
 label end:
     return
 
-label dClockUpdate:
-
-
-label clockUpdate:
-    $ current_time += 1
-    if current_time == 13:
-        $ current_time = 1
-    return
-
-label displayClock:
-    show clock_face at upper_right
-    show clock_hands at upper_right
-    return
