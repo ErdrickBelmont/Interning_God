@@ -3,26 +3,46 @@ init python:
     config.quit_action = None
 
 #image resize
-image bg temple = im.Scale("temple.png", 1980, 1080)
-image bg grassy field = im.Scale("House in front of a tea field.png", 1980, 1080)
-image bg school = im.Scale("elementary school.png", 1980, 1080)
-image bg market = im.Scale("market.png", 1980, 1080)
-image bg street = im.Scale("town.png", 1980, 1080)
-image bg river = im.Scale("riverside.png", 1980, 1080)
-image bg grave = im.Scale("grave.png", 1980, 1080)
+image bg temple = im.Scale("temple.png", 1920, 1080)
+image bg grassy field = im.Scale("House in front of a tea field.png", 1920, 1080)
+image bg school = im.Scale("elementary school.png", 1920, 1080)
+image bg market = im.Scale("market.png", 1920, 1080)
+image bg street = im.Scale("town.png", 1920, 1080)
+image bg river = im.Scale("riverside.png", 1920, 1080)
+image bg grave = im.Scale("grave.png", 1920, 1080)
 
+#intern
 image i ancient = im.Scale("intern-ancient.png", 225 * 1.6, 280 * 1.6)
+image i normal = im.Scale("intern-modern.png", 210 * 1.6, 280 * 1.6)
+image i mad = im.Scale("InGod_Angery.png",210 * 1.6, 280 * 1.6)
+image i happy = im.Scale("InGod_Happy.png",210 * 1.6, 280 * 1.6)
+image i sad = im.Scale("InGod_Sad.png",210 * 1.6, 280 * 1.6)
+image i neutral = im.Scale("InGod_Neutral.png",210 * 1.6, 280 * 1.6)
+
+#child
 image gl = im.Scale("child-normal.png", 200 * 1.6, 280 * 1.6)
+image gl neutral = im.Scale("child_Neutral.avif", 200 * 1.6, 280 * 1.6)
+image gl happy = im.Scale("child_happy.avif", 200 * 1.6, 280 * 1.6)
+image gl sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
+image gl angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
+
+#hana
+
+#spirit
+
+image 
+
 #image gl mad = im.Scale("child-mad.png", 200 * 1.6, 280 * 1.6)
 image gp = im.Scale("grandpa-normal.png", 200 * 1.6, 280 * 1.6)
 image gm = im.Scale("granny-normal.png", 200 * 1.6, 280 * 1.6)
-image i normal = im.Scale("intern-modern.png", 210 * 1.6, 280 * 1.6)
+
 
 #character definition
 define i = Character("Intern God")
 define gp = Character("Grandpa")
 define gm = Character("Grandma")
 define gl = Character("Guoliang")
+
 
 #character art position definition
 define middle = Position (yalign = 0.7)
@@ -31,7 +51,36 @@ define right = Position (xalign = 0.85, yalign = 0.7)
 define lower_middle = Position (yalign = 0.75)
 define lower_left = Position (xalign = 0.15, yalign = 0.75)
 define lower_right = Position (xalign = 0.85, yalign = 0.75)
+define upper_right = Position (xalign = 0.95, yalign = 0.05)
 
+#time images
+define currentTime = 6
+image clockFace = "clockFace.svg"
+image clockHands = ConditionSwitch(
+    "currentTime == 1", "1.svg",
+    "currentTime == 2", "2.svg",
+    "currentTime == 3", "3.svg",
+    "currentTime == 4", "4.svg",
+    "currentTime == 5", "5.svg",
+    "currentTime == 6", "6.svg",
+    "currentTime == 7", "7.svg",
+    "currentTime == 8", "8.svg",
+    "currentTime == 9", "9.svg",
+    "currentTime == 10", "10.svg",
+    "currentTime == 11", "11.svg",
+    "currentTime == 12", "12.svg"
+)
+
+label updateClock:
+    $ currentTime += 1
+    if currentTime == 13:
+        $ currentTime = 1
+    return
+
+label showClock:
+    show clockFace at upper_right
+    show clockHands at upper_right
+    return
 
 label start:
     
@@ -51,6 +100,7 @@ menu:
 label Guoliang_arc:
 
     scene bg grassy field
+    call showClock
     "Taking on my human form, I made my way to a tea farm tended by an old couple. The couple is currently hard at work harvesting tea leaves."
     show i normal at middle
     "These two have been praying every single day for the well-being of their grandson, Guoliang. "
@@ -60,6 +110,7 @@ label Guoliang_arc:
     "Ah, got it! I just have to figure out what he really wants, and give it to him. Easy peasy!…Now, how I figure that out is the real question…"
     hide i
     gm "You there, young man!"
+    call updateClock
     show gm at lower_left
     show gp at right
     "I look up to see the grandfather and grandmother marching towards me. She helped her husband walk while she carried a basket full of tea leaves on her back."
