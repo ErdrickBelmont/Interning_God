@@ -18,42 +18,38 @@ image bg market = im.Scale("market.png", 1920, 1080)
 image bg street = im.Scale("town.png", 1920, 1080)
 image bg river = im.Scale("riverside.png", 1920, 1080)
 image bg grave = im.Scale("grave.png", 1920, 1080)
+image bg cat = im.Scale("cat.jpg", 1920, 1080)
 
 #intern
-image i ancient = im.Scale("intern-ancient.png", 225 * 1.6, 280 * 1.6)
-image i normal = im.Scale("intern-modern.png", 210 * 1.6, 280 * 1.6)
-image i mad = im.Scale("InGod_Angery.png",210 * 1.6, 280 * 1.6)
-image i happy = im.Scale("InGod_Happy.png",210 * 1.6, 280 * 1.6)
-image i sad = im.Scale("InGod_Sad.png",210 * 1.6, 280 * 1.6)
-image i neutral = im.Scale("InGod_Neutral.png",210 * 1.6, 280 * 1.6)
+image i ancient = im.Scale("intern-ancient.png", 225 * 1.6 , 280 * 1.6 )
+image i mad = im.Scale("InGod_Angery.png",309 , 492 )
+image i happy = im.Scale("InGod_Happy.png",307 , 506)
+image i sad = im.Scale("InGod_Sad.png",306 , 496 )
+image i neutral = im.Scale("InGod_Neutral.png", 306 , 497 )
 
 #child
-image gl = im.Scale("child-normal.png", 200 * 1.6, 280 * 1.6)
-image gl neutral = im.Scale("child_Neutral.avif", 200 * 1.6, 280 * 1.6)
-image gl happy = im.Scale("child_happy.avif", 200 * 1.6, 280 * 1.6)
-image gl sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
-image gl angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
+image gl = im.Scale("child_Neutral.avif", 169 , 392 )
+image gl happy = im.Scale("child_happy.avif", 167 , 398 )
+image gl sad = im.Scale("child_sad.avif", 169 , 393 )
+image gl mad = im.Scale("child_angery.avif", 166 , 389 )
 
 #spirit
-image s neutral = im.Scale("child_Neutral.avif", 200 * 1.6, 280 * 1.6)
-image s happy = im.Scale("child_happy.avif", 200 * 1.6, 280 * 1.6)
-image s sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
-image s angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
+image s neutral = im.Scale("child_Neutral.avif", 200 , 280 )
+image s happy = im.Scale("child_happy.avif", 200 , 280 )
+image s sad = im.Scale("child_sad.avif", 200 , 280 )
+image s mad = im.Scale("child_angery.avif", 200 , 280 )
 
 #hana
-image h happy = im.Scale("child_happy.avif", 200 * 1.6, 280 * 1.6)
-image h neutral = im.Scale("child_Neutral.avif", 200 * 1.6, 280 * 1.6)
-image h sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
-image h angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
+image h happy = im.Scale("child_happy.avif", 200 , 280 )
+image h neutral = im.Scale("child_Neutral.avif", 200 , 280 )
+image h sad = im.Scale("child_sad.avif", 200 , 280 )
+image h mad = im.Scale("child_angery.avif", 200 , 280 )
 
 
-#spirit
+#image gl mad = im.Scale("child-mad.png", 200 , 280 )
+image gp = im.Scale("grandpa-normal.png", 200 * 1.6 , 280 * 1.6 )
+image gm = im.Scale("granny-normal.png", 200 * 1.6 , 280 *1.6 )
 
-#image 
-
-#image gl mad = im.Scale("child-mad.png", 200 * 1.6, 280 * 1.6)
-image gp = im.Scale("grandpa-normal.png", 200 * 1.6, 280 * 1.6)
-image gm = im.Scale("granny-normal.png", 200 * 1.6, 280 * 1.6)
 
 
 
@@ -635,7 +631,7 @@ label Guoliang_arc:
     i"A family doesn’t only have to be people who are related to you. A family can be the people who are there to see you shine in your happiest moments, and are there to lift you up in your darkest hours."
     i"But above all else, no matter what you do, whether you succeed or fail, they will always love you."
     i"You just have to let them in."
-	#the rest is wrote after the background change
+#the rest is wrote after the background change
     "I stand up and reach my hand out to Guoliang."
     i "So what do you say, Guoliang?"
     i "Are you ready to let me in?"
