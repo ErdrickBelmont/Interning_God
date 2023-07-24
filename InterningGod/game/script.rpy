@@ -2,6 +2,13 @@
 init python:
     config.quit_action = None
 
+#character definition
+define i = Character("Intern God")
+define h = Character("Hana")
+define gp = Character("Grandpa")
+define gm = Character("Grandma")
+define gl = Character("Guoliang")
+
 #image resize
 image bg temple = im.Scale("temple.png", 1920, 1080)
 image bg grassy field = im.Scale("House in front of a tea field.png", 1920, 1080)
@@ -26,7 +33,18 @@ image gl happy = im.Scale("child_happy.avif", 200 * 1.6, 280 * 1.6)
 image gl sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
 image gl angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
 
+#spirit
+image s neutral = im.Scale("child_Neutral.avif", 200 * 1.6, 280 * 1.6)
+image s happy = im.Scale("child_happy.avif", 200 * 1.6, 280 * 1.6)
+image s sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
+image s angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
+
 #hana
+image h happy = im.Scale("child-happy.avif", 200 * 1.6, 280 * 1.6)
+image h neutral = im.Scale("child_Neutral.avif", 200 * 1.6, 280 * 1.6)
+image h sad = im.Scale("child_sad.avif", 200 * 1.6, 280 * 1.6)
+image h angery = im.Scale("child_angery.avif", 200 * 1.6, 280 * 1.6)
+
 
 #spirit
 
@@ -37,11 +55,7 @@ image gp = im.Scale("grandpa-normal.png", 200 * 1.6, 280 * 1.6)
 image gm = im.Scale("granny-normal.png", 200 * 1.6, 280 * 1.6)
 
 
-#character definition
-define i = Character("Intern God")
-define gp = Character("Grandpa")
-define gm = Character("Grandma")
-define gl = Character("Guoliang")
+
 
 
 #character art position definition
@@ -793,7 +807,113 @@ label Hana:
 
     
 label Hana_arc:
-    "Come here on a later date again!"
+    show i happy at bottom_right
+    i "Uh… hello ma’am! Is there anything I can help you with?"
+    show h neutral at bottom_left
+    "At this, Hana turns to look at you up and down, examining you while making little comments. At this, you look briefly at your human form, checking that you didn’t make any part of it too strange or unordinary."
+    h "Hmm, well you’re a little thin, but you should do well enough!"
+    show i netural at bottom_right
+    i "Huh, ok note for next time, make sure my muscles are accurate."
+    show h happy at bottem_left
+    h "Young man, do you think you would be able to help me with a few errands today?"
+    i "(Should I really be running errands? I could be doing so much more with my time here…) "
+    "(Looking over at Hana, her house is very quaint, and more than that, she’s the only one in it. There are some photos framed around the house, and while most of them are covered in dust, there’s one exception. Two girls stand arm in arm in a field, their smiles bright and wide.)"
+    i "(Maybe I’m the only one that can help her…)"
+    i "Yes! I would love to help ma’am! What can I do? "
+    "(Hana chuckles after hearing your response.) "
+    h "So enthusiastic! Well, here, I need help getting some things for someone very close to me. It’s a special occasion, so it’s really important that I get everything by the end of today."
+    i "Oh! Is it their birthday, perhaps?"
+    show h sad at bottem_left
+    "(The smile falls from her face.) "
+    h "Ah…I guess you could say that…"
+    show i netural at bottom_right
+    i "(Ah…did I say something to upset her?)"
+    i "…Anyway, what exactly do you need?"
+    show h neutral at bottom_left
+    "( She shakes herself out of whatever was affecting her, and starts picking some things up while talking to you.)"
+    h "Well, that’s the thing. I can handle one of these things, but they’re both pretty time consuming, so I don’t think I can do both. I need to get True Lilies from one of the fields nearby, but my knees make getting there more complicated than it really should be."
+    show i happy at bottom_right
+    i "Oh, that shouldn’t be too hard. What’s the other thing?"
+    h "Some ingredients for a famous dish of mine, Braised Pork and Dumplings! I’ve made a list of everything I need to get at the market, and it’s fairly close, but I often need to take multiple trips so I don’t carry too much."
+    show h happy at bottem_left
+    h "I already get chewed out by my doctor too much for pushing myself, I don’t want to add more fuel to that fire!"
+    i "Got it! You said you need all of this by the end of today, yes?"
+    h "Correct!"
+    i "Well, I can take care of one of these, while you take care of the other, and that way we’ll have both done relatively soon!"
+    show i netural at bottom_right
+    i "(Now… which one to choose…)"
+    # hana split 1
+    menu:
+        "Gather some Pure Lilies":
+            call lillies
+        "Gather ingredients at the market":
+            call market
+
+    show i happy at bottom_right
+    show h happy at bottem_left
+    "As soon as you arrive back on Hana’s front porch she turns around, smiling."
+    h "Ah! You got everything! Thank you so much."
+    i "Of course! Now, what else can I help you with?"
+    show h neutral at bottom_left\
+    h "Oh no, you’ve done enough! Sit down, I’ll take care of the cooking."
+
+    "WIP"
+    jump end
+        
+label lillies:
+    show i happy at bottom_right
+    i "Here, how about I go and gather those flowers, and bring them back to you as soon as I can?"\
+    show h happy at bottem_left
+    h "Yes, thank you! I guess I’ll gather up my basket for the market then!"
+    hide h
+    "You start to walk away, watching as Hana gathers her things and heads into the town center. As soon as she’s out of eyesight, you transform into a small bird, and fly towards the lily field."
+    hide i
+    scene Grassy Field
+    "(You fly over, looking for a good patch of lilies, until you find a beautiful group of white lilies, shining like the moonlight.)"
+    "Perfect! Whoever she’s giving these two will love them!"
+    show i netural at bottom_right
+    "(Landing close to them, you lightly dust off your clothes, and start picking a few of them. As you gather a few of them, you feel a voice from behind you.) "
+    s "Oh… Hana still gets those?"
+    "(If you were a mortal, the spirit’s voice would’ve made you jump. Thankfully, you’re fairly used to the deceased and their behavior.)"
+    show i happy at bottom_right
+    i "Ah! Hello, you know Hana?"
+    s "Mmm… I do. Or, I did."
+    "(The spirit’s voice echoes around you, a hollow, faint sound. Then there’s a quiet laugh that echoes for a moment.)"
+    s "How in the world did she get a god to do her errands for her?"
+    i "Ah! Well, I was tasked with helping the people of this town, and answering their prayers. I guess her prayer was to prepare for some special event today, and it must be pretty important!"
+    s "So she… she still-"
+    "(The spirit pauses, thinking for a moment, and then looks at you and speaks a single word.)"
+    s "Oh."
+    show i netural at bottom_right
+    i "Is…everything ok?"
+    hide s
+    "(You look around, but the spirit is already disappearing.)"
+    i "(Hmm, frustrating. I should check in with Hana when I get back.)"
+    "Gathering your things, you make sure you’ve gathered plenty of lilies, and start to fly back to Hana."
+    hide i
+    return
+
+
+label market:
+    show i happy at bottom_right
+    i "Well, what if I got the stuff for Braised Pork and Dumplings and you got the lilies?"
+    show h happy at bottem_left
+    h "Sure! I’ll start heading out to the fields."
+    hide h
+    "You wave goodbye to Hana, gather some of her baskets and bags, and start to head out to the town center."
+    scene market
+    show i netural at bottom_right
+    i "(Hmm, so the list here should have everything, now if I can just actually find it all…)"
+    "You look over the list, trying to make a mental map of where you would find everything and what to get first."
+    i "I think I’ll start with getting the stuff for the dough!"
+    return
+
+
+
+
+
+
+
 
 
 label end:
