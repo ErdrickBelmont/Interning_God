@@ -22,7 +22,7 @@ image bg cat = im.Scale("cat.jpg", 1920, 1080)
 
 #intern
 image i ancient = im.Scale("intern-ancient.png", 225 * 1.6 , 280 * 1.6 )
-image i mad = im.Scale("InGod_Angery.png",309 , 492 )
+image i mad = im.Scale("InGod_Angry.png",309 , 492 )
 image i happy = im.Scale("InGod_Happy.png",307 , 506)
 image i sad = im.Scale("InGod_Sad.png",306 , 496 )
 image i neutral = im.Scale("InGod_Neutral.png", 306 , 497 )
@@ -94,18 +94,64 @@ label showClock:
     return
 
 label start:
-    
-    scene bg temple
-    i "Day XXX. Only XXX more days until the town and its people meet their end. "
-    show i ancient at middle
-    i "I truly wish I could save them from this calamity, but even gods cannot intervene with the fate of mortals."
-    i "*Sigh* The least I can do is grant them one final moment of happiness. Now, whose prayers should I answer today?"
-    scene black with fade
+    default arc = "Guoliang"
+    default Guoliang = False
+    default Hana = False
+
+    scene black
+    "Death. "
+    "It can happen to anyone, at any time. "
+    "But sooner or later, death will come. "
+    "That is the inevitable fate of all mortal beings. "
+    "But there is one thing all mortals want before that time comes. "
+    "Something they want to experience before they pass on:"
+    "Happiness."
+
+    scene bg street
+    show i neutral at middle
+    i "Okay, that’s another prayer answered. "
+    i"Those farmers will have a bountiful harvest this year."
+    i "*Just another day. Watch over the town. Answer some prayers if I feel like it."
+    i "*Yawn* Couldn’t I have been assigned to a more exciting town? "
+    i"Nothing ever happens here. "
+    i"But I guess that’s a good thing? It means that this is a peaceful town, but man is it boring watching them everyday."
+    "Suddenly, a scroll appears in front of me."
+    i "Huh? A message from the boss? "
+    i"Let’s see here."
+    i "... Mhm… "
+    i "Uh-huh… "
+    i "...Okay. "
+    i "So this town’s going to face a disaster soon."
+    i "Eh, one of the higher ranking gods can save them. Afterall, I’m just an intern level god. Not much I can do with my power."
+    "Boss God" "I am afraid that will not be the case here."
+    i "Oh, boss! You’re here."
+    "Boss God" "This town and its people will perish in three days, as was written on the scroll. That is their fate."
+    i "Huh? You mean, you or higher ups aren’t going to save them?"
+    "Boss God" "Gods are not to interfere with the fate of mortals."
+    "Boss God" "To do so would disrupt the balance of creation and destruction."
+    i "Oh… I guess that makes sense."
+    "Boss God" "Continue to watch over this town until that day comes. I will leave you to do your duties now."
+    i "Understood." 
+    "..."
+    hide i
+    "I look back down at the town and all of its residents going about their daily activities."
+    "Here I was thinking about how boring watching over this town was, and now I’m being told this town is going to be destroyed."
+    show i neutral at middle
+    i "Look at all of these people living their lives. "
+    i"They’re all going to die soon, but they don’t know that."
+    i"That’s a shame."
+    i "*sigh* ...Three days, huh? "
+    i "Not a lot of time for them. "
+    i "But maybe… "
+    i "I may not be able to save them, but I can at least help a couple of the townspeople feel at peace before they go."
+    i "Okay, who should I help out? "
+    i "If memory serves, there seem to be two people that have been praying about serious problems they’ve been having."
+
 
 menu:
-    "Help out an old couple":
+    "Guoliang":
         jump Guoliang_arc
-    "arc 2":
+    "Hana":
         jump Hana_arc
 
 label Guoliang_arc:
@@ -117,7 +163,7 @@ label Guoliang_arc:
     "These two have been praying every single day for the well-being of their grandson, Guoliang. "
     "From what I’ve observed, this kid is one of those troublemakers. Always pulling pranks on the townsfolk, and getting caught every single time. He doesn’t even try to talk to his grandparents"
     "How exactly am I supposed to help this old couple? Hm…"
-    #show i smile at above_box
+    show i happy at middle
     "Ah, got it! I just have to figure out what he really wants, and give it to him. Easy peasy!…Now, how I figure that out is the real question…"
     hide i
     gm "You there, young man!"
@@ -164,7 +210,7 @@ label Guoliang_arc:
     hide gm
     "The grandmother slowly chases after her wandering husband."
     #show i smile
-    show i neutral at middle
+    show i happy at middle
     "Talk about perfect timing. I can use this as an opportunity to get something for their grandchild. Problem solved!"
     hide i at fadeout(1.0)
     "Once the couple resumes picking more leaves, I transform into a bird and fly off to the school."
@@ -197,11 +243,14 @@ label Guoliang_arc:
     show i neutral at left
     show gl at right
     i "So, Guoliang… is there anything in particular you want? Something you’re in the mood for? You name it, I can get it for you!"
+    show gl mad at right
     gl "What do you care?"
     #show i shocked at left
     i "I’m just asking. Thought I’d get you a treat so you’re more comfortable around me."
+    show gl happy at right
     gl "Hah! Like that’ll win me over."
     i "So… is that a no…?"
+    show gl mad at right
     gl "Why did my grandparents even send you to get me? I can get back on my own like I always do."
     show i neutral at left
     i "Apparently you’ve been getting yourself into a lot of trouble, young man."
@@ -213,8 +262,9 @@ label Guoliang_arc:
     i "{i}Some kid.{/i}"
     show i neutral at left
     i "Look, I’m just here to keep an eye on you until you get home. If you promise to behave, I’ll buy you whatever you want, okay?"
+    show gl at right
     gl "Anything?"
-    #show i smile at left
+    show i happy at left
     i "Yeah! Anything. You name it. I’ll buy it!"
     gl "Even if it’s expensive?"
     i "Of course! If it makes you happy, then by all means I’ll get it for you."
@@ -234,7 +284,7 @@ label Guoliang_arc:
     " I follow him down the street, up and down stairs, across a bridge, and even through the gaps between buildings.Eventually, I lost sight of him…"
 
     scene bg market
-    #show i tired at middle
+    show i sad at middle
     show i neutral at middle
     i "He sure has a lot of energy, even for a little kid."
     i "*sigh* This is becoming more of a hassle than I thought it would be."
@@ -257,7 +307,7 @@ label Guoliang_arc:
     "Fruit Vendor" "Oh, it’s just you, Guoliang."
     "Fruit Vendor" "Found yourself a new caretaker, did you?"
     "Fruit Vendor" "Hehehe good luck. This little rascal’s a handful."
-    #show i tired at left
+    show i sad at left
     i "Oh he certainly is…"
     show gl at right
     "I carry a squirming Guoliang away in my arm."
@@ -267,7 +317,7 @@ label Guoliang_arc:
     "Fruit Vendor" "Poor boy. A shame he doesn’t have any good role models in his life."
 
     scene bg cat
-    show gl at right
+    show gl mad at right
     show i neutral at left
     gl "Agh! Let go of my hand!"
     i "So you can run away again? Not a chance."
@@ -287,16 +337,18 @@ label Guoliang_arc:
     show i neutral at left
     gl "Ugh, fine! I won’t run away anymore. Just let go of my hand."
     i "Hmm… I don’t know…"
+    show gl at right
     gl "Come on. Please?"
     i "{i}It’s for the sake of his grandparents. Worst case scenario, I have to chase him all around town again. You just have to make him happy.{/i}"
     #show i tired at left
     i "Alright, but no funny business."
     "Guoliang nodded, though he was clearly annoyed."
     i "Okay good."
-    #show i smile at left
+    show i happy at left
     i "Now then, I said I’d get you something, and I’m a man of my word. What are you in the mood for?"
     gl "Nothing. Just take me home."
     i "You sure? Your grandparents said you could have anything."
+    show gl mad at right
     gl "I told you I don’t want anything!"
     show i neutral at left
     "Doesn’t look like Guoliang wants to talk anymore. He’s really giving me a tough time!"
@@ -314,11 +366,12 @@ label Guoliang_arc:
     menu:
         "Buy some street food":
             $ gl_choice = "gua bao"
-            scene bg food stall
+
+            scene bg market
             "I decide to track down the scent, making sure to also keep Guoliang in my line of sight."
             "We eventually traced the source of the aroma to a stall that was selling gua bao."
             #show i smile at left
-            show i neutral at left
+            show i happy at left
             show gl at right
             i "That looks tasty!"
             i "What do you think, Guoliang? You like gua bao?"
@@ -331,11 +384,11 @@ label Guoliang_arc:
             i "We’ll take 2, please."
             "The vendor takes the cash and prepares us some fresh gua bao."
             "My mouth waters just watching them prepare it. The pork looks so tender and juicy. And the smell."
-            #show i happy at left
+            show i happy at left
             "*sniff* Ah~ Simply divine!"
             "Even though gods don’t need to eat, I find it a sin to not partake in human cuisine."
             "I eagerly take the two buns from the vendor."
-            #show i smile at left
+            show i happy at left
             i "Thank you!"
             show gl at right
             i "Here you go, Guoliang. Eat up!"
@@ -354,11 +407,13 @@ label Guoliang_arc:
             show gl at right
             gl "Yeah, I did."
             i "So go ahead and eat it."
+            show gl mad at right
             gl "I can’t."
             i "Why not?"
             gl "Because I’m allergic to peanuts!"
             #show i shocked at left
             i "Oh! You are? You should have told me."
+            show gl at right
             gl "You should’ve asked."
             #show i nervous at left
             i "I… okay, fair point."
@@ -372,7 +427,7 @@ label Guoliang_arc:
             "I’m up next."
             "After paying for the two bao, I return to the spot where I left Guoliang."
             #show i smile at middle
-            show i neutral at middle
+            show i happy at middle
             i "Alrighty, I made sure to ask the guy not to put peanuts this ti-"
             #show i nervous at middle
             "I look, but Guoliang is not there."
@@ -395,18 +450,20 @@ label Guoliang_arc:
             i "You want a toy, don’t you?"
             gl "Huh? What? No I don’t."
             i "I see you staring at those toys over there. Don’t be shy."
+            show gl mad at right
             gl "I said I do- hey!"
             "I take Guoliang to the toy store so he can pick out a toy."
 
             scene bg store
             #show i smile at left
-            show i neutral at left
+            show i happy at left
             show gl at right
             i "Go on and pick any toy you want."
             gl "I told you I don’t want any toys."
             gl "Besides, toys are for little kids."
             show i neutral at left
             i "Last I checked, you are one."
+            show gl mad at right
             gl "Grrr."
             i "Alright, fine. I’ll pick for you."
             hide i 
@@ -423,7 +480,7 @@ label Guoliang_arc:
             show i neutral at middle
             i "Excuse me. One [toy] for my little boy here, please."
             "The clerk hands me the [toy]."
-            #show i smile at midddle
+            show i happy at midddle
             i "Thank you!"
             show i neutral at left
             show gl at right
@@ -433,7 +490,7 @@ label Guoliang_arc:
             #show i shocked at left
             i "What? I’ve seen kids your age love playing with these."
             gl "Yeah cause they’re babies. Only little kids would have fun playing with something so stupid."
-            #show i smile at left
+            show i happy at left
             i "It’s not stupid. If you know how to do tricks."
             gl "What tricks?"
             i "Hehe, watch and learn, kid."
@@ -446,7 +503,7 @@ label Guoliang_arc:
                 "I take the string from the top and start swinging it around."
                 "Each time I swung it, I wrapped the string around my fingers, making loops until finally…"
                 "The top was dangling in front of the web I made with the string."
-            show gl at right
+            show gl happy at right
             gl "Mmm. Not bad."
             i "Impressive right? Now watch this."
             if toy == "chě líng":
@@ -468,8 +525,8 @@ label Guoliang_arc:
                 "To finish my performance, I twirl the top around me before launching it into the air."
                 "I give the mom and her daughter a smile, then catch the top on the palm of my hand without looking. The top is still spinning when I catch it."
             "The mom and her daughter clap for me, so I decide to give them a little bow."
+            show i happy at middle
             i "Thank you, thank you!"
-            #shwo i smile at middle
             i "See that, Guoliang? That’s not so lame now, is it?"
             "I look around the area, but there’s no sign of Guoliang."
             show i neutral at middle
@@ -484,12 +541,11 @@ label Guoliang_arc:
             i "{i}I can’t make the old couple’s wish come true if I don’t have the little rascal with me!{/i}"
             hide i 
         
-    scene bg bridge
+    scene bg street
     "I spent hours searching the town."
     "I checked every alley, every store, even went back to the elementary school. No sign of him whatsoever."
     "I lean against the railing of a bridge in defeat."
-    show i neutral at middle
-    #show i tired at middle
+    show i sad at middle
     i "*sigh* I guess this is one prayer I won’t be able to answer…"
     i "I just hope they don’t come back and haunt this place after they die."
     hide i
@@ -507,14 +563,14 @@ label Guoliang_arc:
     hide i
     hide gp
 
-    scene bg town
+    scene bg river
     gp "Ah… It is a lovely view, ain’t it?"
     i "Yes. Yes it is."
     "The two of us stand there in silence."
     "I don’t want to bring up the fact that I lost their grandson after they trusted me to bring him back home."
     "But at the same time, it’s a little awkward not saying a word."
 
-    scene bg bridge
+    scene bg street
     gp "Guoliang likes to sit by the river just outside of town."
     i "...what?"
     show gp at right
@@ -540,7 +596,7 @@ label Guoliang_arc:
     show i neutral at left
     "I don’t know if this old man is delusional, or he saw right through me."
     "Regardless, I assure him that I’ll do what I am allowed to do for him."
-    #show i smile at left
+    show i happy at left
     i"Of course."
     gp"Mmm, good."
     "The grandfather slowly walks away."
@@ -555,14 +611,14 @@ label Guoliang_arc:
     "... ..."
     gp"Haha… such a fine young man…"
 
-    scene bg riverside
+    scene bg river
     "I fly overhead to the river, and after surveying the area, I find Guoliang crouching by the riverside. Just like the old man said."
     "I land on the road by the river, quickly transforming back into a human."
     show i neutral at middle
     "I’m about to walk over to Guoliang, but then I stop myself."
     #show i nervous at left
     show i neutral at left
-    show gl at right
+    show gl sad at right
     "It’s faint, but I can hear Guoliang sniveling."
     i "{i}Is he crying? Why would he be…{/i}"
     i "{i}Oh…{/i}"
@@ -576,7 +632,7 @@ label Guoliang_arc:
     i "{i}I get it now.{/i}"
     "I approach Guoliang slowly until my shadow is cast over him."
     show i neutral at left
-    show gl at right
+    show gl sad at right
     "Guoliang is still sobbing. He doesn’t seem to have noticed me yet."
     i "You miss them, don’t you?"
     gl "Huh!?"
@@ -585,19 +641,22 @@ label Guoliang_arc:
     "Guoliang tries to wipe his face with his arm to hide the fact that he was crying, but it was already too late for that."
     gl "What are you…"
     i "Your parents. You just want to be with them, right?"
+    show gl sad at right
     "Guoliang looks away without giving a response."
     i "Your grandpa told me."
     "For once, Guoliang doesn’t say anything. He just goes back to staring at the river."
     "I take a seat next to Guoliang, not saying a word."
     "He doesn’t try to run away."
     i "It must be hard for you. Watching all of those kids happily skip around with their mamas and babas."
+    show gl mad at right
     gl "Be quiet!"
     gl"All those kids talk about how much they love their parents and how amazing they are."
     gl"Meanwhile I can’t even do much with {i}my{/i} grandparents."
     gl"Nothing like what I see all my classmates get to do with their parents."
+    show gl sad at right
     gl"I never even got much time with my parents!"
     gl"My mama died when I was only four, and my baba leaves me here soon after!"
-    show i shocked at left
+    #show i shocked at left
     i"He what!?"
     gl"He hasn’t even come to check in on me in three years."
     show i neutral at middle
@@ -612,13 +671,13 @@ label Guoliang_arc:
     "Guoliang wails into the setting sun. His cries echo across the valley."
     "All of the pain, sorrow, anger. Everything he had been holding in until now came flowing out like the river."
     #show i sad at middle
-    show i neutral at middle
+    show i sad at middle
     i"To experience all of this, and at such a young age too…"
     i"There’s only one thing to do now."
     hide i
     i"Gently, I rub Guoliang’s back."
     show i neutral at left
-    show gl at right
+    show gl sad at right
     i"I’m sure your father was just as heartbroken. I mean, he lost the love of his life, and maybe seeing you just brought too much pain for him to bear."
     "Guoliang continues to weep."
     i"Look, I don’t know what it’s like to lose both of my parents as a young boy…"
@@ -626,18 +685,18 @@ label Guoliang_arc:
     "Guoliang’s stops crying."
     i"Even if your parents aren’t here to be with you, there are people who can be."
     i"People who want nothing more than to see you be happy and live your life to the fullest. Your grandparents, your teacher, the kids at the school, even the fruit vendor." 
-    #show i smile at left
+    show i happy at left
     i"and me"
     i"A family doesn’t only have to be people who are related to you. A family can be the people who are there to see you shine in your happiest moments, and are there to lift you up in your darkest hours."
     i"But above all else, no matter what you do, whether you succeed or fail, they will always love you."
     i"You just have to let them in."
-#the rest is wrote after the background change
     "I stand up and reach my hand out to Guoliang."
     i "So what do you say, Guoliang?"
     i "Are you ready to let me in?"
     "Guoliang stares at me, then looks back at my hand."
     "For a long moment, he just stares. I wasn’t sure if he was going to take it or not."
     "But soon enough, Guoliang takes my hand."
+    show gl happy at right
     "I help Guoliang up onto his feet, and pull out a cloth to wipe his face clean."
     i "Now, I may not be your father, but at the very least…"
     "I pick up Guoliang and place him on my shoulders."
@@ -653,19 +712,24 @@ label Guoliang_arc:
     i "Yeah. It sure is."
 
     scene bg river
-
+    show i happy at left
+    show gl happy at right
     i "Alright passengers, please fasten your seatbelts. The train is about to take off!"
+    show gl at right
     gl "Huh?"
     i "Right now!"
     "I begin light jogging back to the town with Guoliang on my shoulders."
     gl "Whoa!"
     i "Hold on tight!"
     "Guoliang holds onto my head."
+    show gl happy at right
     "I can hear Guoliang laugh as I continue to jog back to town."
 
     scene bg market
 
     "Me and Guoliang walk through the night market, both of us eating peanut free gua bao."
+    show i happy at left
+    show gl happy at right
     i "You enjoying your gua bao, Guoliang?"
     "I hear a muffled “mhm” from him."
     gl "Ish sho good!"
@@ -677,50 +741,72 @@ label Guoliang_arc:
     gl "Mmm! Yummy!"
     i "Glad you like it!"
     i "{i}I wonder how long it’s been since Guoliang was like this.{/i}"
+    hide gl
     i "{i}It's nice to see he's finally enjoying himself."
     i"{i}Now all I have to do is drop him off at his grandparents’ house, and this will all be over!{/i}"
     i"..."
     i"..."
+    show i neutral at middle
     i "{i}It will all be over...{/i}"
     "I look over to Guoliang getting stuck in with the bào bīng."
     i "{i}Who knows how long he’ll have left until the town meets its end?{/i}"
     i "{i}He finally gets to experience happiness after so long, and it might be the only time he gets to be happy.{/i}"
+    show i mad at middle
     i "{i}Why? All because it’s supposed to be his fate to die?{/i}"
     i "{i}He deserves to live a long, happy life!{/i}"
+    show i mad at left
+    show gl at right
     gl "Are you okay mister?"
+    show i neutral at left
     i "Huh?"
     gl "You look like you’re mad."
     i "O-oh. It’s nothing, don’t worry about it."
     i "Just make sure to finish the bào bīng before I drop you off."
     gl "If you say so."
     "Guoliang continues to eat the bào bīng."
+    hide i
+    hide gl
 
     scene bg street
+    show i neutral at left
+    show gl at right
     i "Okay, we’re almost home."
     gl "*Yawn* Today was the best! I hope I can’t wait to have more days like this!"
+    show i happy at left
     i "Yeah… yeah I hope you do…"
     i "..."
+    show i neutral at left
     i "{i}Am I really going to just let him die?{/il}"
-
+    hide i
+    hide gl
     menu:
         "Drop him off":
+            show i neutral at middle
             i "*sigh*"
             i "{i}No, I can’t change his fate.{/i}"
             i "{i}As much as I want nothing more than for this boy to live, I can’t.{/i}"
             i "{i}Even gods shouldn’t tamper with the fate of mortals… No matter how unfair it can be.{/i}"
+            show i neutral at left
+            show gl happy at right
             "I look down at Guoliang."
             "It looks like he’s starting to drift off."
             "I pick Guoliang up and carry him on my back."
+            show i happy at left
             i "There you go. Just a little longer."
             gl "Mmmm… I love you… baba…"
+            show i neutral at left
             i "Baba?"
             "Guoliang begins to snore."
+            hide gl
             i "Hah!"
             i "{i}As long as Guoliang is happy in his final moments, that’s enough for me.{/i}"
             i "I love you too…"
+            hide i
 
         "Save him":
             "I stop."
+            show i neutral at left
+            show gl at right
             gl "Huh? Why are we stopping?"
             i "Guoliang."
             gl "Yeah?"
@@ -731,6 +817,7 @@ label Guoliang_arc:
             i "I’ll give you money."
             gl "You will?"
             i "Yeah, enough money to last you a whole year."
+            show i happy at left
             gl "H-how?"
             i "Don’t worry about it. I’m asking if you want to move to the city."
             i "I’ll take care of telling your grandparents and the school."
@@ -743,11 +830,14 @@ label Guoliang_arc:
             i "Huh? Guoliang?"
             gl "... I… I don’t want to."
             i "What?"
+            show gl at right
             gl "I don’t want to go. I want to stay here."
             i "But… but why?"
             gl "I don’t know, but I want to start living my life here in town."
             i "You can have a better life in the city. Have a fresh start! LIVE a happier life!"
+            show i mad at left
             "Guoliang backs away, and I realized I started raising my voice at him."
+            show i neutral at left
             i "I-I’m sorry. I’m so sorry."
             i "I don’t know what came over me."
             gl "I-it’s okay, mister."
@@ -758,52 +848,66 @@ label Guoliang_arc:
             gl "But I’m not ready to face him yet."
             gl "There are a lot of things I want to do here, and things I have to fix."
             gl "Once I’ve done all that, then I think I’ll be ready to see baba again."
+            show i sad at left
             i  "{i}But, you won’t have the chance to do any of that…{/i}"
+            show gl happy at right
             gl "Besides, mister, you taught me something today."
+            show i neutral at left
             i "Oh? What’s that?"
             gl "My family’s been here this entire time! And I need to make things right with them."
             i "!"
             i "..."
             i "{i}Whatever makes him happy.{/i}"
+            show i happy at left
             i "You’re right. Your family has been here all along."
             "Guoliang and I smile at each other."
             i "Now come on. Just a little further to home."
+            hide i
+            hide gl
 
             scene bg grassy field
+            show i neutral at left
+            show gm at lower_right
             gm "Thank you again for bringing Guoliang back."
+            show i happy at left
             i "It was nothing, really."
             gm "I must say, I haven’t seen Guoliang happy in forever."
             gm "Whatever you did for him, thank you, truly."
             i "Haha. I’m always glad to bring a smile to anyone’s face!"
             i "Now then, I’ll be off now."
             gm "Take care!"
+            hide gm
             "I wave goodbye to the old lady, but before I go, Guoliang runs up to me."
+            show gl at right
             gl "Hey! Mister!"
+            show i neutral at left
             i "Huh? What’s up?"
             "Out of the blue, Guoliang gives me a big hug."
+            show gl happy at right
             gl "Thank you for everything!"
             "Guoliang hugs me tightly."
+            show i happy at left
             i "You’re welcome."
+            hide i
+            hide gl
             "I see Guoliang run back to his grandmother before she closes the door."
             "Taking the form of a bird, I circle above Guoliang’s house to take one good look at it."
+            show i ancient at middle
             i "{i}Goodbye, Guoliang.{/i}"
             i "{i}May you be reunited with your mother in the afterlife.{/i}"
+            hide i
             "With a heavy heart, I say one final goodbye to Guoliang and his folks before flying off to the temple."
             "Unknown to me, the grandfather watched me fly off from the window of his room."
+            show gp at middle
             gp "Thank you, for answering our prayers, my lord."
-
-    jump end
-
-    
-label Hana:
-    "Come here on a later date again!"
-
-
-
-    jump end
+            hide gp
+    $ arc = "Hana"
+    $ Guoliang = True
+    jump transition
 
     
 label Hana_arc:
+    scene bg street with fade
     show i happy at lower_right
     i "Uh… hello ma’am! Is there anything I can help you with?"
     show h neutral at lower_left
@@ -855,7 +959,9 @@ label Hana_arc:
     h "Oh no, you’ve done enough! Sit down, I’ll take care of the cooking."
 
     "WIP"
-    jump end
+    $ arc = "Guoliang"
+    $ Hana = True
+    jump transition
         
 label lillies:
     show i happy at lower_right
@@ -865,7 +971,7 @@ label lillies:
     hide h
     "You start to walk away, watching as Hana gathers her things and heads into the town center. As soon as she’s out of eyesight, you transform into a small bird, and fly towards the lily field."
     hide i
-    scene Grassy Field
+    scene bg grassy field
     "(You fly over, looking for a good patch of lilies, until you find a beautiful group of white lilies, shining like the moonlight.)"
     "Perfect! Whoever she’s giving these two will love them!"
     show i neutral at lower_right
@@ -898,7 +1004,7 @@ label market:
     h "Sure! I’ll start heading out to the fields."
     hide h
     "You wave goodbye to Hana, gather some of her baskets and bags, and start to head out to the town center."
-    scene market
+    scene bg market
     show i neutral at lower_right
     i "(Hmm, so the list here should have everything, now if I can just actually find it all…)"
     "You look over the list, trying to make a mental map of where you would find everything and what to get first."
@@ -906,6 +1012,21 @@ label market:
     return
 
 
+label transition:
+    if not Guoliang or not Hana:
+        scene bg street with fade
+        show i ancient at middle
+        i "Only 2 more days until the town and its people meet their end."
+        i "If only I could do more for them to change their fate…"
+        i "*Sigh* The least I can do is grant them one final moment of happiness."
+        i "Now then, time to go answer [arc]’s prayers."
+        hide i
+        if Guoliang == True and Hana == False :
+            jump Hana_arc
+        else:
+            jump Guoliang_arc
+    else:
+        jump end
 
 
 
@@ -914,5 +1035,55 @@ label market:
 
 
 label end:
+    scene black
+    "Death."
+    "Death is inevitable. "
+    "People have dreams, wishes that they want to be fulfilled, to complete before they pass on. "
+    "I take joy knowing that I helped even a few of those wishes come true, but… "
+    "And as much as I tried, even gods cannot change fate."
+    scene street with fade
+    show i ancient at middle
+    i "Alright, I helped the shopkeeper find his dog, I blessed the fishermen’s next few catches, I think I can answer one more prayer before-"
+    "A light shines from behind me, and I see a single lonely scroll floating. I can already tell what it says. Opening it up, the only thing on it are the words “It is time.”"
+    i "Please…no I- I thought I had more time…"
+    i "What if I- no I wouldn’t be allowed to-"
+    i "I could- no that wouldn’t work"
+    "Going through endless possibilities in my mind, the realization that’s been here all along dawns on me. "
+    "I can’t do anything to save them."
+    show i sad at middle
+    i "I… I should escape while I can."
+    hide i
+    scene black
+    "I head back up to my temple, far away from any of the disaster that’s going to befall the town. "
+    "At first, I can’t see how any of this calamity would ever happen, but then I see it; Up on the hills above the village, the beginnings of a landslide. "
+    "If it fell, it would hit a nearby dam, and the town would be buried under earth and water."
+    i "Even if they saw it… they couldn’t do anything to run."
+    show i ancient at middle
+    i "I hope… for all of the good I’ve done for them in these past few days, I can help them go as peacefully as they can."
+    "I take a deep breath, and try to watch over the townspeople one last time. "
+    "Standing far above all of them, I see the inhabitants go about their day, unaware of their incoming doom. "
+    "I watch Guoliang playing as his grandparents watch, I see Hana making some dumplings in her kitchen, I see so many people happy with their lives. "
+    "Then the cracks start forming. Rumbling coming from the hills. "
+    "People starting to get alarmed. Animals crying out in fear. "
+    "The hills coming down in a crash. Panic spreading in the streets. "
+    "Water exploding free from its restraints. Houses crushed by rocks the size of trucks. "
+    "And then, after everything, "
+    "Silence."
+    "I look over the ruins of the town, and have to hold back tears."
+    "Every single inch of it is gone."
+    "Everything these people worked towards, and their whole lives, gone in the matter of minutes. "
+    "I take a shaky breath. "
+    show i sad at middle
+    i "Everyone… they’re all gone."
+    i "But, I tried to make sure, with each and every one of them, that they left with no regrets."
+    i "I hope that was worth something."
+    "I stay silent for what feels like hours, mourning each and every one of the townspeople I was able to meet."
+    i "I… I want to head down there, and see it for myself. I don’t want to be distant from this just because I’m a god, I want to feel that grief as well."
+    i "It’s the least I could do as their god."
+    "Walking among the ruins of this town, you transform back into your human form, the person that these townspeople met and interacted with. "
+    "Creating a single white flower, you place it down in the wreckage of the town center and pray. "
+    "Pray that all of the lives lost are able to rest Pray that all of their loved ones are able to find peace and Pray that all of this meant something. "
+    "With that transform into your godly form you summon your scroll and you bid farewell to your town."
+
     return
 
