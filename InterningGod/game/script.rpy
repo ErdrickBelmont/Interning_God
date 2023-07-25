@@ -11,14 +11,12 @@ define gl = Character("Guoliang")
 define s = Character("Spirit")
 
 #image resize
-image bg temple = im.Scale("temple.png", 1920, 1080)
-image bg grassy field = im.Scale("House in front of a tea field.png", 1920, 1080)
-image bg school = im.Scale("elementary school.png", 1920, 1080)
-image bg market = im.Scale("market.png", 1920, 1080)
-image bg street = im.Scale("town.png", 1920, 1080)
-image bg river = im.Scale("riverside.png", 1920, 1080)
-image bg grave = im.Scale("grave.png", 1920, 1080)
-image bg cat = im.Scale("cat.jpg", 1920, 1080)
+image bg grassy field = "grass_field.avif"
+image bg school = "school.avif"
+image bg market = "market.avif"
+image bg street = "town_street.avif"
+image bg river = "river.avif"
+image bg cat = im.Scale ("cat.jpg", 1920, 1080)
 
 #intern
 image i ancient = im.Scale("intern-ancient.png", 225 * 1.6 , 280 * 1.6 )
@@ -46,7 +44,6 @@ image h sad = im.Scale("child_sad.avif", 200 , 280 )
 image h mad = im.Scale("child_angery.avif", 200 , 280 )
 
 
-#image gl mad = im.Scale("child-mad.png", 200 , 280 )
 image gp = im.Scale("grandpa-normal.png", 200 * 1.6 , 280 * 1.6 )
 image gm = im.Scale("granny-normal.png", 200 * 1.6 , 280 *1.6 )
 
@@ -65,35 +62,36 @@ define lower_right = Position (xalign = 0.85, yalign = 0.75)
 define upper_right = Position (xalign = 0.95, yalign = 0.05)
 
 #time images
-define currentTime = 6
-image clockFace = "clockFace.svg"
-image clockHands = ConditionSwitch(
-    "currentTime == 1", "1.svg",
-    "currentTime == 2", "2.svg",
-    "currentTime == 3", "3.svg",
-    "currentTime == 4", "4.svg",
-    "currentTime == 5", "5.svg",
-    "currentTime == 6", "6.svg",
-    "currentTime == 7", "7.svg",
-    "currentTime == 8", "8.svg",
-    "currentTime == 9", "9.svg",
-    "currentTime == 10", "10.svg",
-    "currentTime == 11", "11.svg",
-    "currentTime == 12", "12.svg"
-)
+#define currentTime = 6
+#image clockFace = "clockFace.svg"
+#image clockHands = ConditionSwitch(
+#    "currentTime == 1", "1.svg",
+#    "currentTime == 2", "2.svg",
+#    "currentTime == 3", "3.svg",
+#    "currentTime == 4", "4.svg",
+#    "currentTime == 5", "5.svg",
+#    "currentTime == 6", "6.svg",
+#    "currentTime == 7", "7.svg",
+#    "currentTime == 8", "8.svg",
+#    "currentTime == 9", "9.svg",
+#    "currentTime == 10", "10.svg",
+#    "currentTime == 11", "11.svg",
+#    "currentTime == 12", "12.svg"
+#)
 
-label updateClock:
-    $ currentTime += 1
-    if currentTime == 13:
-        $ currentTime = 1
-    return
+#label updateClock:
+#    $ currentTime += 1
+#    if currentTime == 13:
+#        $ currentTime = 1
+#    return
 
-label showClock:
-    show clockFace at upper_right
-    show clockHands at upper_right
-    return
+#label showClock:
+#    show clockFace at upper_right
+#    show clockHands at upper_right
+#    return
 
 label start:
+    play music "opening_theme.ogg" volume 0.5 loop
     default arc = "Guoliang"
     default Guoliang = False
     default Hana = False
@@ -112,9 +110,11 @@ label start:
     i "Okay, that’s another prayer answered. "
     i"Those farmers will have a bountiful harvest this year."
     i "*Just another day. Watch over the town. Answer some prayers if I feel like it."
+    show i sad at middle
     i "*Yawn* Couldn’t I have been assigned to a more exciting town? "
     i"Nothing ever happens here. "
     i"But I guess that’s a good thing? It means that this is a peaceful town, but man is it boring watching them everyday."
+    show i neutral at middle
     "Suddenly, a scroll appears in front of me."
     i "Huh? A message from the boss? "
     i"Let’s see here."
@@ -122,6 +122,7 @@ label start:
     i "Uh-huh… "
     i "...Okay. "
     i "So this town’s going to face a disaster soon."
+    show i sad at middle
     i "Eh, one of the higher ranking gods can save them. Afterall, I’m just an intern level god. Not much I can do with my power."
     "Boss God" "I am afraid that will not be the case here."
     i "Oh, boss! You’re here."
@@ -146,6 +147,7 @@ label start:
     i "I may not be able to save them, but I can at least help a couple of the townspeople feel at peace before they go."
     i "Okay, who should I help out? "
     i "If memory serves, there seem to be two people that have been praying about serious problems they’ve been having."
+    stop music fadeout 1.0
 
 
 menu:
@@ -155,9 +157,9 @@ menu:
         jump Hana_arc
 
 label Guoliang_arc:
-
+    play music "maintheme.wav" volume 0.5 loop
     scene bg grassy field
-    call showClock
+    #call showClock
     "Taking on my human form, I made my way to a tea farm tended by an old couple. The couple is currently hard at work harvesting tea leaves."
     show i neutral at middle
     "These two have been praying every single day for the well-being of their grandson, Guoliang. "
@@ -167,10 +169,12 @@ label Guoliang_arc:
     "Ah, got it! I just have to figure out what he really wants, and give it to him. Easy peasy!…Now, how I figure that out is the real question…"
     hide i
     gm "You there, young man!"
-    call updateClock
+    #call updateClock
     show gm at lower_left
     show gp at right
+    play sound "walkingGrass.ogg" volume 0.7
     "I look up to see the grandfather and grandmother marching towards me. She helped her husband walk while she carried a basket full of tea leaves on her back."
+    stop sound
     "The grandmother has this stern look on her face, but the grandfather looks rather confused."
     hide gp
     #show i annoyed at right
@@ -213,6 +217,7 @@ label Guoliang_arc:
     show i happy at middle
     "Talk about perfect timing. I can use this as an opportunity to get something for their grandchild. Problem solved!"
     hide i at fadeout(1.0)
+    play sound "wingFlap.ogg" volume 0.7
     "Once the couple resumes picking more leaves, I transform into a bird and fly off to the school."
 
     scene bg school with fade
@@ -273,14 +278,18 @@ label Guoliang_arc:
     i "Tell me."
     gl "I want…"
     hide gl
+    #play sound "Running.ogg" volume 0.5
     "Guoliang darts ahead trying to get away from me."
     gl "To get away from you!"
+    stop sound
     #show i shocked at middle
     i "What- hey! Guoliang! Come back here!"
     hide i
+    #play sound "Running.ogg" volume 0.5
     "I chase after Guoliang."
 
     scene bg bridge with fade
+    stop sound
     " I follow him down the street, up and down stairs, across a bridge, and even through the gaps between buildings.Eventually, I lost sight of him…"
 
     scene bg market
@@ -310,7 +319,9 @@ label Guoliang_arc:
     show i sad at left
     i "Oh he certainly is…"
     show gl at right
+    play sound "clothesRustling.ogg" volume 0.5
     "I carry a squirming Guoliang away in my arm."
+    stop sound
     "But as I’m leaving, I can’t help but overhear the fruit vendor say something about Guoliang."
     hide gl
     hide i
@@ -340,7 +351,7 @@ label Guoliang_arc:
     show gl at right
     gl "Come on. Please?"
     i "{i}It’s for the sake of his grandparents. Worst case scenario, I have to chase him all around town again. You just have to make him happy.{/i}"
-    #show i tired at left
+    show i sad at left
     i "Alright, but no funny business."
     "Guoliang nodded, though he was clearly annoyed."
     i "Okay good."
@@ -369,7 +380,9 @@ label Guoliang_arc:
 
             scene bg market
             "I decide to track down the scent, making sure to also keep Guoliang in my line of sight."
+            play sound "sizzling.ogg" volume 0.7
             "We eventually traced the source of the aroma to a stall that was selling gua bao."
+            stop sound
             #show i smile at left
             show i happy at left
             show gl at right
@@ -383,10 +396,12 @@ label Guoliang_arc:
             "I pull out a wallet from my pocket and hand the vendor some cash."
             i "We’ll take 2, please."
             "The vendor takes the cash and prepares us some fresh gua bao."
+            play sound "sizzling.ogg" volume 0.7
             "My mouth waters just watching them prepare it. The pork looks so tender and juicy. And the smell."
             show i happy at left
             "*sniff* Ah~ Simply divine!"
             "Even though gods don’t need to eat, I find it a sin to not partake in human cuisine."
+            stop sound
             "I eagerly take the two buns from the vendor."
             show i happy at left
             i "Thank you!"
@@ -423,7 +438,9 @@ label Guoliang_arc:
             hide i
             hide gl
             "I go back to the vendor to buy another gua bao for Guoliang… and another one for myself. This time, without peanuts."
+            play sound "fatherAndSonLaugh.ogg" volume 0.7
             "I wait behind a father and his son. They seem so happy to be eating together. Classic father-son bonding activities. The father carries his son on his shoulders as they walk away with their bao."
+            stop sound
             "I’m up next."
             "After paying for the two bao, I return to the spot where I left Guoliang."
             #show i smile at middle
@@ -454,7 +471,7 @@ label Guoliang_arc:
             gl "I said I do- hey!"
             "I take Guoliang to the toy store so he can pick out a toy."
 
-            scene bg store
+            scene bg market
             #show i smile at left
             show i happy at left
             show gl at right
@@ -480,7 +497,7 @@ label Guoliang_arc:
             show i neutral at middle
             i "Excuse me. One [toy] for my little boy here, please."
             "The clerk hands me the [toy]."
-            show i happy at midddle
+            show i happy at middle
             i "Thank you!"
             show i neutral at left
             show gl at right
@@ -509,7 +526,9 @@ label Guoliang_arc:
             if toy == "chě líng":
                 "I rotate my arms around, keeping the formation of the string."
                 "Wherever I rotated, the chě líng would roll along, never leaving the string."
+                play sound "littleGirlGiggle.ogg" volume 0.5
                 "I heard a little girl laughing."
+                stop sound
                 "On my right, I see a little girl and her mom watching me in awe."
                 hide gl
                 i "{i}Time to give everyone the grand finale.{/i}"
@@ -518,6 +537,7 @@ label Guoliang_arc:
             if toy == "spinning top":
                 "I sway the top gently a few times before giving it one big swing."
                 "In an instant, my web unravels itself in a fashionable manner. "
+                
                 "I heard a little girl laughing."
                 "On my left, I see a little girl and her mom watching me in awe."
                 hide gl
@@ -566,9 +586,11 @@ label Guoliang_arc:
     scene bg river
     gp "Ah… It is a lovely view, ain’t it?"
     i "Yes. Yes it is."
+    play sound "river.ogg" volume 0.3
     "The two of us stand there in silence."
     "I don’t want to bring up the fact that I lost their grandson after they trusted me to bring him back home."
     "But at the same time, it’s a little awkward not saying a word."
+    stop sound
 
     scene bg street
     gp "Guoliang likes to sit by the river just outside of town."
@@ -606,6 +628,7 @@ label Guoliang_arc:
     show i neutral at middle
     i"But now I know where to find Guoliang."
     hide i
+    play sound "wingFlap.ogg" volume 0.7
     "After making sure I’m alone, I transform into a bird and fly over to the river to find Guoliang."
     "... ..."
     "... ..."
@@ -619,7 +642,9 @@ label Guoliang_arc:
     #show i nervous at left
     show i neutral at left
     show gl sad at right
+    play sound "sniffling.ogg" volume 0.7
     "It’s faint, but I can hear Guoliang sniveling."
+    stop sound
     i "{i}Is he crying? Why would he be…{/i}"
     i "{i}Oh…{/i}"
     hide gl
@@ -630,7 +655,9 @@ label Guoliang_arc:
     "And the time when I bought him the [gl_choice]."
     "There was a kid who was spending quality time with their parent at the time."
     i "{i}I get it now.{/i}"
+    play sound "walkingGrass.ogg" volume 0.3
     "I approach Guoliang slowly until my shadow is cast over him."
+    stop sound
     show i neutral at left
     show gl sad at right
     "Guoliang is still sobbing. He doesn’t seem to have noticed me yet."
@@ -770,10 +797,12 @@ label Guoliang_arc:
     scene bg street
     show i neutral at left
     show gl at right
+    play sound "crickets.ogg" volume 0.7
     i "Okay, we’re almost home."
     gl "*Yawn* Today was the best! I hope I can’t wait to have more days like this!"
     show i happy at left
     i "Yeah… yeah I hope you do…"
+    stop sound
     i "..."
     show i neutral at left
     i "{i}Am I really going to just let him die?{/il}"
@@ -790,7 +819,9 @@ label Guoliang_arc:
             show gl happy at right
             "I look down at Guoliang."
             "It looks like he’s starting to drift off."
+            play sound "clothesRustling.ogg" volume 0.5
             "I pick Guoliang up and carry him on my back."
+            stop sound
             show i happy at left
             i "There you go. Just a little longer."
             gl "Mmmm… I love you… baba…"
@@ -885,7 +916,9 @@ label Guoliang_arc:
             "Out of the blue, Guoliang gives me a big hug."
             show gl happy at right
             gl "Thank you for everything!"
+            play sound "clothesRustling.ogg" volume 0.5
             "Guoliang hugs me tightly."
+            stop sound
             show i happy at left
             i "You’re welcome."
             hide i
@@ -897,16 +930,19 @@ label Guoliang_arc:
             i "{i}May you be reunited with your mother in the afterlife.{/i}"
             hide i
             "With a heavy heart, I say one final goodbye to Guoliang and his folks before flying off to the temple."
+            play sound "wingFlap.ogg" volume 0.7
             "Unknown to me, the grandfather watched me fly off from the window of his room."
             show gp at middle
             gp "Thank you, for answering our prayers, my lord."
             hide gp
+    stop music
     $ arc = "Hana"
     $ Guoliang = True
     jump transition
 
     
 label Hana_arc:
+    play music "maintheme.wav" volume 0.5 loop
     scene bg street with fade
     show i happy at lower_right
     i "Uh… hello ma’am! Is there anything I can help you with?"
@@ -959,6 +995,7 @@ label Hana_arc:
     h "Oh no, you’ve done enough! Sit down, I’ll take care of the cooking."
 
     "WIP"
+    stop music
     $ arc = "Guoliang"
     $ Hana = True
     jump transition
@@ -1013,6 +1050,7 @@ label market:
 
 
 label transition:
+    play music "once_upon_a_time_loop.ogg" volume 0.7 loop
     if not Guoliang or not Hana:
         scene bg street with fade
         show i ancient at middle
@@ -1035,13 +1073,14 @@ label transition:
 
 
 label end:
+    play music "mess.ogg" volume 0.5 loop
     scene black
     "Death."
     "Death is inevitable. "
     "People have dreams, wishes that they want to be fulfilled, to complete before they pass on. "
     "I take joy knowing that I helped even a few of those wishes come true, but… "
     "And as much as I tried, even gods cannot change fate."
-    scene street with fade
+    scene bg street with fade
     show i ancient at middle
     i "Alright, I helped the shopkeeper find his dog, I blessed the fishermen’s next few catches, I think I can answer one more prayer before-"
     "A light shines from behind me, and I see a single lonely scroll floating. I can already tell what it says. Opening it up, the only thing on it are the words “It is time.”"
@@ -1084,6 +1123,6 @@ label end:
     "Creating a single white flower, you place it down in the wreckage of the town center and pray. "
     "Pray that all of the lives lost are able to rest Pray that all of their loved ones are able to find peace and Pray that all of this meant something. "
     "With that transform into your godly form you summon your scroll and you bid farewell to your town."
-
+    stop music
     return
 
