@@ -1,3 +1,7 @@
+#diable close project confirmation
+init python:
+    config.quit_action = None
+
 #character definition
 define i = Character("Intern God")
 define h = Character("Hana")
@@ -20,7 +24,6 @@ image i mad = im.Scale("InGod_Angry.png",309 , 492 )
 image i happy = im.Scale("InGod_Happy.png",307 , 506)
 image i sad = im.Scale("InGod_Sad.png",306 , 496 )
 image i neutral = im.Scale("InGod_Neutral.png", 306 , 497 )
-image i shocked = im.Scale ("intern_shocked.png", 314, 517)
 
 #child
 image gl = im.Scale("child_Neutral.avif", 169 , 392 )
@@ -175,7 +178,7 @@ label Guoliang_arc:
     "The grandmother has this stern look on her face, but the grandfather looks rather confused."
     hide gp
     #show i annoyed at right
-    show i shocked at right
+    show i neutral at right
     "Shoot, was I staring? Do they think I'm a stalker?"
     i "Uh d-don’t mind me! I was just taking a look at the tea trees! Nothing else, I swear"
     show gm at lower_left
@@ -199,8 +202,8 @@ label Guoliang_arc:
     "The grandfather sauntered over to a seat on the porch."
     gm "I swear, sometimes I don’t know what to do with him."
     "The grandmother fixes the flower in her hair."
-    show i sad at middle
     gm "Anyway, please just bring back our grandson. Can you do that for us?"
+    show i neutral at right
     i "Oh, uh, of course!"
     gm "Good."
     gm "Go ahead and buy him anything to keep him from going off. As for me, I have my own problems to take care of."
@@ -210,13 +213,14 @@ label Guoliang_arc:
     gm "Oh for god’s sake."
     hide gm
     "The grandmother slowly chases after her wandering husband."
+    #show i smile
     show i happy at middle
     "Talk about perfect timing. I can use this as an opportunity to get something for their grandchild. Problem solved!"
     hide i at fadeout(1.0)
     play sound "wingFlap.ogg" volume 0.7
     "Once the couple resumes picking more leaves, I transform into a bird and fly off to the school."
 
-    scene bg school
+    scene bg school with fade
     "After flying for a bit, I arrived at the elementary school. I land in a nearby alley where no one will see me turn back into a human."
     show i neutral at middle
     "Before picking up Guoliang, I fix myself up a little so I don’t look suspicious. Then, I start walking over to the school. I look for a clock on my way to check the time."
@@ -239,14 +243,14 @@ label Guoliang_arc:
     "I waved back to the teacher as she saw us out with a smile."
     hide i
 
-    scene bg market
+    scene bg market with fade
     "As I walked Guoliang through the market, I ask him about anything he wants to have."
     show i neutral at left
     show gl at right
     i "So, Guoliang… is there anything in particular you want? Something you’re in the mood for? You name it, I can get it for you!"
     show gl mad at right
     gl "What do you care?"
-    show i shocked at left
+    #show i shocked at left
     i "I’m just asking. Thought I’d get you a treat so you’re more comfortable around me."
     show gl happy at right
     gl "Hah! Like that’ll win me over."
@@ -255,12 +259,10 @@ label Guoliang_arc:
     gl "Why did my grandparents even send you to get me? I can get back on my own like I always do."
     show i neutral at left
     i "Apparently you’ve been getting yourself into a lot of trouble, young man."
-    show gl mad at right
     gl "Have not!"
-    show i mad at left
+    #show i annoyed at left
     i "Don’t deny it. I’ve seen you being all mischievous."
     i "Setting animals loose, shooting rubber bands, kicking shuttlecocks at people…"
-    show gl mad at right
     gl "Hmph. They got what they deserved."
     i "{i}Some kid.{/i}"
     show i neutral at left
@@ -272,7 +274,6 @@ label Guoliang_arc:
     gl "Even if it’s expensive?"
     i "Of course! If it makes you happy, then by all means I’ll get it for you."
     gl "What makes me happy…"
-    show gl happy at right
     gl "Then, do you want to know what I want?"
     i "Tell me."
     gl "I want…"
@@ -281,16 +282,15 @@ label Guoliang_arc:
     "Guoliang darts ahead trying to get away from me."
     gl "To get away from you!"
     stop sound
-    show i shocked at middle
+    #show i shocked at middle
     i "What- hey! Guoliang! Come back here!"
     hide i
     #play sound "Running.ogg" volume 0.5
     "I chase after Guoliang."
 
-    scene bg street with fade
+    scene bg bridge with fade
     stop sound
-    " I follow him down the street, up and down stairs, across a bridge, and even through the gaps between buildings."
-    "Eventually, I lost sight of him…"
+    " I follow him down the street, up and down stairs, across a bridge, and even through the gaps between buildings.Eventually, I lost sight of him…"
 
     scene bg market
     show i sad at middle
@@ -308,7 +308,7 @@ label Guoliang_arc:
     "I walk up behind him and pick him up."
     gl "Wha- Hey! Put me down!"
     "Guoliang shouts as he tries to free himself. The fruit vendor gives me a look of concern."
-    show i sad at left
+    #show i nervous at left
     i "Ehehe…"
     i "Sorry about that. This one loves to run off on his own."
     i "We were just on our way home and then he-"
@@ -318,7 +318,7 @@ label Guoliang_arc:
     "Fruit Vendor" "Hehehe good luck. This little rascal’s a handful."
     show i sad at left
     i "Oh he certainly is…"
-    show gl mad at right
+    show gl at right
     play sound "clothesRustling.ogg" volume 0.5
     "I carry a squirming Guoliang away in my arm."
     stop sound
@@ -333,17 +333,18 @@ label Guoliang_arc:
     gl "Agh! Let go of my hand!"
     i "So you can run away again? Not a chance."
     "I drag Guoliang along with me."
+    #show i nervous at middle
+    show i neutral at middle
     hide gl
-    show i sad at middle
     "Maybe I should just bring him back to his grandparents and hope that that’s enough."
     "..."
     "..."
     show i neutral at middle
     "No."
     "I made a vow to help the people of this town before their end, and I’ll see it through."
-    show i mad at middle
+    #show i annoyed at middle
     "Even if it means dealing with this runt."
-    show gl mad at right
+    show gl at right
     show i neutral at left
     gl "Ugh, fine! I won’t run away anymore. Just let go of my hand."
     i "Hmm… I don’t know…"
@@ -363,7 +364,7 @@ label Guoliang_arc:
     show i neutral at left
     "Doesn’t look like Guoliang wants to talk anymore. He’s really giving me a tough time!"
     "I already spent a good amount of time trying to help this old couple, and I am not about to back out! They want their grandson to be happy, so I’m going to make him happy. I have to."
-    show i sad at left
+    #show i nervous at left
     "Before they all perish."
     show i neutral at left
     show gl at right
@@ -406,10 +407,11 @@ label Guoliang_arc:
             i "Thank you!"
             show gl at right
             i "Here you go, Guoliang. Eat up!"
-            show i happy at left
+            #show i happy at left
             hide gl
             "After handing Guoliang his gua bao, I begin to dig into mine, savoring every bite."
             "Not even a minute goes by and I’ve already consumed my bao."
+            #show i smile at left
             i "That was delicious."
             show gl at right
             "I look over to Guoliang, who had watched me devour the bao in seconds."
@@ -424,11 +426,11 @@ label Guoliang_arc:
             gl "I can’t."
             i "Why not?"
             gl "Because I’m allergic to peanuts!"
-            show i shocked at left
+            #show i shocked at left
             i "Oh! You are? You should have told me."
             show gl at right
             gl "You should’ve asked."
-            show i sad at left
+            #show i nervous at left
             i "I… okay, fair point."
             i "Here, I’ll go buy you another one."
             i "Wait right here, okay?"
@@ -444,12 +446,11 @@ label Guoliang_arc:
             #show i smile at middle
             show i happy at middle
             i "Alrighty, I made sure to ask the guy not to put peanuts this ti-"
-            show i sad at middle
+            #show i nervous at middle
             "I look, but Guoliang is not there."
             i "Guoliang?"
             hide i with fade
             "I look around the area, but there’s no sign of Guoliang."
-            show i sad at middle
             i "{i}Oh no{/i}"
             i "Me and my captivation for food!"
             i "{i}I gotta find Guoliang fast!{/i}"
@@ -460,7 +461,7 @@ label Guoliang_arc:
         "Buy a toy for him":
             scene bg market
             #show i smile at left
-            show i happy at left
+            show i neutral at left
             show gl at right
             i "{i}That’s it! Kids love toys! If I buy him a brand new toy, then he’ll surely be happy! …at least, until doomsday arrives…{/i}"
             i "You want a toy, don’t you?"
@@ -475,9 +476,7 @@ label Guoliang_arc:
             show i happy at left
             show gl at right
             i "Go on and pick any toy you want."
-            show gl mad at right
             gl "I told you I don’t want any toys."
-            show gl at right
             gl "Besides, toys are for little kids."
             show i neutral at left
             i "Last I checked, you are one."
@@ -504,7 +503,6 @@ label Guoliang_arc:
             show gl at right
             "I give the [toy] to Guoliang."
             i "Here you go. Go on, play with it."
-            show gl mad at right
             gl "Seriously? These toys are so lame."
             #show i shocked at left
             i "What? I’ve seen kids your age love playing with these."
@@ -531,7 +529,6 @@ label Guoliang_arc:
                 play sound "littleGirlGiggle.ogg" volume 0.5
                 "I heard a little girl laughing."
                 stop sound
-                show gl at right
                 "On my right, I see a little girl and her mom watching me in awe."
                 hide gl
                 i "{i}Time to give everyone the grand finale.{/i}"
@@ -540,8 +537,8 @@ label Guoliang_arc:
             if toy == "spinning top":
                 "I sway the top gently a few times before giving it one big swing."
                 "In an instant, my web unravels itself in a fashionable manner. "
+                
                 "I heard a little girl laughing."
-                show gl at right
                 "On my left, I see a little girl and her mom watching me in awe."
                 hide gl
                 i "{i}Time to give everyone the grand finale.{/i}"
@@ -554,12 +551,12 @@ label Guoliang_arc:
             "I look around the area, but there’s no sign of Guoliang."
             show i neutral at middle
             i "Guoliang?"
-            show i sad at middle
+            #show i nervous at middle
             i "{i}Probably should have stopped after the first trick.{/i}"
             hide i
             "Seeing as how the little girl was fascinated by my skills, I decide to give her the toy."
             "She and her mother thank me, and wave goodbye. Now back to the matter at hand."
-            show i sad at middle
+            #show i nervous at middle
             i "{i}I gotta go find Guoliang!{/i}"
             i "{i}I can’t make the old couple’s wish come true if I don’t have the little rascal with me!{/i}"
             hide i 
@@ -576,12 +573,12 @@ label Guoliang_arc:
     show i neutral at left
     show gp at right
     "I turn around to find the grandfather standing right next to me."
-    show i shocked at left
+    #show i shocked at left
     i "Oh! Sir, how long have you been here?"
     gp "Hah, not very long. I just got here."
     i "D-did uh, you hear anything I said."
     gp "What? Did you say something?"
-    show i sad at left
+    #show i nervous at left
     i "Uh nothing, nothing just… admiring the view."
     hide i
     hide gp
@@ -599,13 +596,13 @@ label Guoliang_arc:
     gp "Guoliang likes to sit by the river just outside of town."
     i "...what?"
     show gp at right
-    show i shocked at left
+    show i neutral at left
     gp "Anytime he wants to be by himself, he goes outside of town and sits by the river."
     gp "It’s where he does all of his thinking."
     i "How… How do you know this?"
     gp "You came to us to bring Guoliang true happiness, didn’t you?"
     gp "The gods really did hear our prayers."
-    show i sad at left
+    #show i nervous at left
     i "I… I uh…"
     gp "Truth is, that boy misses his parents."
     gp "He never got to experience what it was like… to have a loving mama and baba."
@@ -614,7 +611,7 @@ label Guoliang_arc:
     i "I… I can imagine."
     gp "We’re…"
     gp"We’re not gonna be around much longer… I know it."
-    show i shocked at left
+    #show i shocked at left
     i "I… how do you-"
     gp "But at the very least, I want our grandson to experience the love of a parent before our time comes."
     gp"Can you grant us this last wish?"
@@ -626,7 +623,7 @@ label Guoliang_arc:
     gp"Mmm, good."
     "The grandfather slowly walks away."
     hide gp with fade
-    show i sad at middle
+    #show i nervous at middle
     i"What a strange old man."
     show i neutral at middle
     i"But now I know where to find Guoliang."
@@ -642,7 +639,8 @@ label Guoliang_arc:
     "I land on the road by the river, quickly transforming back into a human."
     show i neutral at middle
     "I’m about to walk over to Guoliang, but then I stop myself."
-    show i shocked at left
+    #show i nervous at left
+    show i neutral at left
     show gl sad at right
     play sound "sniffling.ogg" volume 0.7
     "It’s faint, but I can hear Guoliang sniveling."
@@ -664,7 +662,6 @@ label Guoliang_arc:
     show gl sad at right
     "Guoliang is still sobbing. He doesn’t seem to have noticed me yet."
     i "You miss them, don’t you?"
-    show gl at right
     gl "Huh!?"
     "Guoliang quickly turns his head around to see me standing right behind him."
     "His face was covered in tears, and snot was running from his nose."
@@ -686,7 +683,7 @@ label Guoliang_arc:
     show gl sad at right
     gl"I never even got much time with my parents!"
     gl"My mama died when I was only four, and my baba leaves me here soon after!"
-    show i shocked at left
+    #show i shocked at left
     i"He what!?"
     gl"He hasn’t even come to check in on me in three years."
     show i neutral at middle
@@ -696,7 +693,6 @@ label Guoliang_arc:
     gl"Why did they have to leave me? *sniff*"
     gl"I…I…"
     hide i
-    show gl sad at middle
     gl"I…I JUST WANT MY MAMA AND BABA!"
     hide gl
     "Guoliang wails into the setting sun. His cries echo across the valley."
@@ -731,11 +727,8 @@ label Guoliang_arc:
     "I help Guoliang up onto his feet, and pull out a cloth to wipe his face clean."
     i "Now, I may not be your father, but at the very least…"
     "I pick up Guoliang and place him on my shoulders."
-    show gl at right
     i "I can at least treat you like you were my own son!"
     i "Go on, take a look."
-    hide i
-    hide gl
 
     scene bg street
     "Guoliang slowly opens his eyes, where the view of town meets his wondrous gaze."
@@ -753,15 +746,11 @@ label Guoliang_arc:
     gl "Huh?"
     i "Right now!"
     "I begin light jogging back to the town with Guoliang on my shoulders."
-    show gl at right
     gl "Whoa!"
-    show i happy at left
     i "Hold on tight!"
     "Guoliang holds onto my head."
     show gl happy at right
     "I can hear Guoliang laugh as I continue to jog back to town."
-    hide i
-    hide gl
 
     scene bg market
 
@@ -777,7 +766,6 @@ label Guoliang_arc:
     gl "*gasp* Yay!"
     "Guoliang and I sit down and enjoy a nice bowl of mango bào bīng together."
     gl "Mmm! Yummy!"
-    show i happy at left
     i "Glad you like it!"
     i "{i}I wonder how long it’s been since Guoliang was like this.{/i}"
     hide gl
@@ -796,7 +784,7 @@ label Guoliang_arc:
     show i mad at left
     show gl at right
     gl "Are you okay mister?"
-    show i shocked at left
+    show i neutral at left
     i "Huh?"
     gl "You look like you’re mad."
     i "O-oh. It’s nothing, don’t worry about it."
@@ -811,7 +799,6 @@ label Guoliang_arc:
     show gl at right
     play sound "crickets.ogg" volume 0.7
     i "Okay, we’re almost home."
-    show gl happy at right
     gl "*Yawn* Today was the best! I hope I can’t wait to have more days like this!"
     show i happy at left
     i "Yeah… yeah I hope you do…"
@@ -837,13 +824,11 @@ label Guoliang_arc:
             stop sound
             show i happy at left
             i "There you go. Just a little longer."
-            show gl happy at right
             gl "Mmmm… I love you… baba…"
             show i neutral at left
             i "Baba?"
             "Guoliang begins to snore."
             hide gl
-            show i happy at middle
             i "Hah!"
             i "{i}As long as Guoliang is happy in his final moments, that’s enough for me.{/i}"
             i "I love you too…"
@@ -862,8 +847,8 @@ label Guoliang_arc:
             gl "Um… well I have, but I don’t have any money."
             i "I’ll give you money."
             gl "You will?"
-            show i happy at left
             i "Yeah, enough money to last you a whole year."
+            show i happy at left
             gl "H-how?"
             i "Don’t worry about it. I’m asking if you want to move to the city."
             i "I’ll take care of telling your grandparents and the school."
@@ -873,10 +858,7 @@ label Guoliang_arc:
             i "{i}This is the only way to save the boy.{/i}"
             i "{i}He deserves a chance to live a happy life!{/i}"
             "But Guoliang doesn’t move."
-            "I tug his arm a little, but he doesn’t move."
-            show i sad at left
             i "Huh? Guoliang?"
-            show gl sad at right
             gl "... I… I don’t want to."
             i "What?"
             show gl at right
@@ -886,7 +868,7 @@ label Guoliang_arc:
             i "You can have a better life in the city. Have a fresh start! LIVE a happier life!"
             show i mad at left
             "Guoliang backs away, and I realized I started raising my voice at him."
-            show i shocked at left
+            show i neutral at left
             i "I-I’m sorry. I’m so sorry."
             i "I don’t know what came over me."
             gl "I-it’s okay, mister."
@@ -895,7 +877,6 @@ label Guoliang_arc:
             i "If you’re worried he might bring you back here, just talk with him. He probably just needs someone to help him, like you and me today."
             gl "I {i}do{/i} want to be with him."
             gl "But I’m not ready to face him yet."
-            show gl at right
             gl "There are a lot of things I want to do here, and things I have to fix."
             gl "Once I’ve done all that, then I think I’ll be ready to see baba again."
             show i sad at left
@@ -904,11 +885,8 @@ label Guoliang_arc:
             gl "Besides, mister, you taught me something today."
             show i neutral at left
             i "Oh? What’s that?"
-            show gl happy at right
             gl "My family’s been here this entire time! And I need to make things right with them."
-            show i neutral at left
             i "!"
-            show i sad at left
             i "..."
             i "{i}Whatever makes him happy.{/i}"
             show i happy at left
@@ -938,11 +916,8 @@ label Guoliang_arc:
             "Out of the blue, Guoliang gives me a big hug."
             show gl happy at right
             gl "Thank you for everything!"
-            show i neutral at left
-            "Guoliang hugs me tightly."
-            "I could feel my eyes begin to water as I remember the short time we spent together. "
-            "Before any tears could escape, I crouch down and embrace Guoliang."
             play sound "clothesRustling.ogg" volume 0.5
+            "Guoliang hugs me tightly."
             stop sound
             show i happy at left
             i "You’re welcome."
@@ -1007,9 +982,9 @@ label Hana_arc:
     # hana split 1
     menu:
         "Gather some Pure Lilies":
-            call lillies from _call_lillies
+            call lillies
         "Gather ingredients at the market":
-            call market from _call_market
+            call market
 
     show i happy at lower_right
     show h happy at lower_left
