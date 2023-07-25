@@ -7,11 +7,11 @@ define gl = Character("Guoliang")
 define s = Character("Spirit")
 
 #image resize
-image bg grassy field = "grass_field.avif"
-image bg school = "school.avif"
-image bg market = "market.avif"
-image bg street = "town_street.avif"
-image bg river = "river.avif"
+image bg grassy field = im.Scale("grass_field.avif", 1920, 1080)
+image bg school = im.Scale("school.avif", 1920, 1080)
+image bg market = im.Scale("market.avif", 1920, 1080)
+image bg street = im.Scale("town_street.avif", 1920, 1080)
+image bg river = im.Scale ("river.avif", 1920, 1080)
 image bg cat = im.Scale ("cat.jpg", 1920, 1080)
 
 #intern
@@ -35,10 +35,10 @@ image s sad = im.Scale("child_sad.avif", 200 , 280 )
 image s mad = im.Scale("child_angery.avif", 200 , 280 )
 
 #hana
-image h happy = im.Scale("child_happy.avif", 200 , 280 )
-image h neutral = im.Scale("child_Neutral.avif", 200 , 280 )
-image h sad = im.Scale("child_sad.avif", 200 , 280 )
-image h mad = im.Scale("child_angery.avif", 200 , 280 )
+image h happy = im.Scale("hana_happy.avif", 200 , 280 )
+image h neutral = im.Scale("hana_Neutral.avif", 200 , 280 )
+image h sad = im.Scale("hana_sad.avif", 200 , 280 )
+image h mad = im.Scale("hana_angery.avif", 200 , 280 )
 
 
 image gp = im.Scale("grandpa-normal.png", 200 * 1.6 , 280 * 1.6 )
@@ -969,30 +969,43 @@ label Guoliang_arc:
 label Hana_arc:
     play music "maintheme.wav" volume 0.5 loop
     scene bg street with fade
+    i "(Walking among the townspeople in disguise, I watch mothers traveling with their
+children, some men working on fixing up an older house, and a single old lady sitting on
+her porch. Her name is Hana, I believe, and from what I’ve observed of her, she was
+alone.)"
+    show i neutral at lower_right
+    i "(In my short time here, I’ve only gotten one or two prayers from her, once asking me to
+send a message to a loved one. I’m not sure how successful those kinds of messages
+are, or how often they reach their departed loved ones, but I sent it on anyway, as is the
+standard.)"
+    i "(Looking over at her, she has a quite disheartened expression painted all over her face.
+Her eyes are closed, and I can feel that she’s quite deep in thought, and as I focus, I
+can sense that she’s in the middle of sending me a prayer!
+Maybe I will be able to help?)"
     show i happy at lower_right
     i "Uh… hello ma’am! Is there anything I can help you with?"
     show h neutral at lower_left
-    "At this, Hana turns to look at you up and down, examining you while making little comments. At this, you look briefly at your human form, checking that you didn’t make any part of it too strange or unordinary."
+    "At this, Hana spun around and inspected me from head to toe, muttering to herself. I briefly checked I didn't botch my human transformation."
     h "Hmm, well you’re a little thin, but you should do well enough!"
     show i neutral at lower_right
     i "Huh, ok note for next time, make sure my muscles are accurate."
     show h happy at lower_left
     h "Young man, do you think you would be able to help me with a few errands today?"
     i "(Should I really be running errands? I could be doing so much more with my time here…) "
-    "(Looking over at Hana, her house is very quaint, and more than that, she’s the only one in it. There are some photos framed around the house, and while most of them are covered in dust, there’s one exception. Two girls stand arm in arm in a field, their smiles bright and wide.)"
+    "( I look behind Hana. Her house is very quaint, and more than that, she’s the only one in it. There are some photos framed around the house, and while most of them are covered in dust, there’s one exception. Two girls stand arm in arm in a field, their smiles bright and wide.)"
     i "(Maybe I’m the only one that can help her…)"
     i "Yes! I would love to help ma’am! What can I do? "
-    "(Hana chuckles after hearing your response.) "
+    "(Hana replyed to me with a chuckle.) "
     h "So enthusiastic! Well, here, I need help getting some things for someone very close to me. It’s a special occasion, so it’s really important that I get everything by the end of today."
     i "Oh! Is it their birthday, perhaps?"
     show h sad at lower_left
-    "(The smile falls from her face.) "
+    "(Just after the words left my lips, the smile falls from her face.) "
     h "Ah…I guess you could say that…"
-    show i neutral at lower_right
+    show i sad at lower_right
     i "(Ah…did I say something to upset her?)"
     i "…Anyway, what exactly do you need?"
     show h neutral at lower_left
-    "( She shakes herself out of whatever was affecting her, and starts picking some things up while talking to you.)"
+    "( She shakes herself out of whatever was affecting her, and starts picking some things up while talking with me.)"
     h "Well, that’s the thing. I can handle one of these things, but they’re both pretty time consuming, so I don’t think I can do both. I need to get True Lilies from one of the fields nearby, but my knees make getting there more complicated than it really should be."
     show i happy at lower_right
     i "Oh, that shouldn’t be too hard. What’s the other thing?"
@@ -1007,19 +1020,133 @@ label Hana_arc:
     # hana split 1
     menu:
         "Gather some Pure Lilies":
-            call lillies from _call_lillies
+            call lillies
         "Gather ingredients at the market":
-            call market from _call_market
+            call market
 
-    show i happy at lower_right
-    show h happy at lower_left
-    "As soon as you arrive back on Hana’s front porch she turns around, smiling."
     h "Ah! You got everything! Thank you so much."
     i "Of course! Now, what else can I help you with?"
     show h neutral at lower_left
     h "Oh no, you’ve done enough! Sit down, I’ll take care of the cooking."
+    "(She takes the ingredients and starts making the dough for the dumplings, then
+moving onto getting the pork cooked. All the while, I try my best to arrange
+the flowers somewhat neatly, but end up packing way too many flowers in one
+single vase.)"
+    h "Alright, almost done on the food over here, and those flowers are...
+passable."
+    show i sad at lower_right
+    i "I tried my best!"
+    show h happy at lower_left
+    h "That you did! I didn’t exactly hire a florist for this, now did I?"
+    "(She laughs, and I sit down with a pout, slightly embarrassed by this mortal
+mocking my work. Silence fills the air as Hana packs up some of the food into a
+small box, and ties a neat bow onto the top of it. She looks like she has
+something to say, but she’s staying silent.)"
+    show i neutral at lower_right
+    i "Is everything alright, Hana?"
+    show h neutral at lower_left
+    h "...I want to tell you about her."
+    i "Hm?"
+    show h happy at lower_left
+    h "Kuniko, I mean."
+    show i happy at lower_right
+    i "Kuniko? Is that who we’re preparing this for?"
+    "(She nods briefly.)"
+    show h neutral at lower_left
+    h "We grew up together here in this town, to be honest it didn’t look too
+much different from it does now."
+    "(Hana laughs at that and I smile as well.)"
+    h "We were inseparable, but for one reason or another she had to move
+away to the city."
+    show h happy at lower_left
+    h "In that absence my heart ached for her, even if I could not put it into
+words yet."
+    "(She looked at me with a smile, but I can tell there’s a sadness in her voice. I
+offer a smile back, and she continues.)"
+    h "When she finally moved back I was the happiest I’ve ever been, and she
+was delighted to see me again as well! We spent years at each other’s
+sides being best friends, I was even at her side during her wedding but..."
+    show h sad at lower_left
+    h "I knew I wanted more."
+    show i sad at lower_right
+    i "Ah... I see so-"
+    h "I was envious, that day, that I wasn’t the one up there with her. And I
+thought about telling her but- I didn’t want to ruin her perfect life."
+    "(She takes a slightly shaky breath.)"
+    show h happy at lower_left
+    h "So... I kept it to myself. I figured that being there by her side was better
+than sacrificing our friendship over something that could never be. She eventually divorced, and at one point it even seemed like- maybe a
+life with her was possible but..."
+    "(Hana’s eyes welled up with tears, a few stray ones falling to the ground as she
+took a deep breath.)"
+    show h sad at lower_left
+    i "...What happened to her?"
+    h "She...caught some kind of illness"
+    "(A pause fills the air as Hana takes her time wiping her tears.)"
+    h "I don’t know if the doctors ever found out what it was, but she was in pain.
+I was there for her, along every step of the way but- In the end it didn’t
+matter."
+    "Hana tries to wipe away the last of her tears, and quietly continues."
+    h "She passed away a few years ago."
+    i "Oh... oh I’m so sorry Hana..."
+    h "It’s...alright, I’ve learned to live life in her absence. But, I can’t lie and say
+that I don’t miss her, miss the space where she used to be, by my side.
+Everyday just feels so- heavy without her."
+    show i happy at lower_right
+    i "I know it’s not been easy but, it’s beautiful you still honor her."
+    "I offered her a tissue, and she takes it with a weak smile."
+    h "I used to beat myself up, wishing that I could’ve done something to help
+her- maybe then, we could’ve had a nice life together-"
+    i "I promise, you did everything you could."
+    "Hana wiped the last of her tears."
+    show h neutral at lower_left
+    h "I know you’ve already done so much, just being here listening, but can
+you help me out with one last thing?"
+    show i happy at lower_right
+    i "Yes. What do you need?"
+    h "On the other side of town, there's a small memorial set up for her. Can
+you help me get the last of the things ready for Kuniko?"
+    i "Of course! What needs to be done?"
+    h "Well, I like to get everything done by sunset, and I’m already running out
+of time, can you help me choose? I need to get a gift for Kuniko, but I also
+need to get candles for her memorial. I think I can only do one, but if we
+get it together we can still make it!"
+    menu:
+        "Buy some decorations for the memorial":
+            call decorations
+        "Pick out a gift for Kuniko":
+            call gift
 
-    "WIP"
+    h "Hello again, Kuniko. I... I have something special to share with you,
+something I could never say during our time together, and I hope that
+somehow, you can forgive my cowardness."
+    "(Hana stays for a moment, kneeling in front of Kuniko’s memorial.)"
+    show h sad at lower_left
+    h "You know, I spent so many countless nights sitting here, wailing over what could’ve been. I tried talking to her every single night, but I never got a response. I think...all I really wanted was a sign that she had heard me, that no matter if she felt the same way about me, she had acknowledged that I love her."
+    show i neutral at lower_right
+    i "A sign..."
+    "(I feel a voice telling me not to, but I know that if I can help Hana with this, I’m going to.)"
+    h "I’m sorry, I know you just came here to help with chores, you didn’t need to hear my whole sob story- "
+    "(She stops talking abruptly as I put my hand on her shoulder, and gasps as I shake off my disguise, showing her my true, godly self.)"
+    show i happy at lower_right
+    i "Hana, I know that however deep your love and devotion to Kuniko goes, she feels just the same."
+    "(Hana seems shocked for a moment, but as you speak she starts weeping, letting years of seemingly unrequited love be replaced with joy.)"
+    show h happy at lower_left
+    i "And I know that for every prayer you sent to her, she heard them all, and wanted to respond to each and every one of them with how much she loved you."
+    "(I return to my mortal disguise, and Hana starts to wipe the tears of joy away.)"
+    h "Thank you... you’ve helped me more than I could ever put into words."
+    i "I just did my job ma’am, but you’re welcome."
+    "(We sit for a while in front of Kuniko’s memorial, before Hana speaks up.)"
+    show h neutral at lower_left
+    h "I don’t think I regret anything really, knowing that she feels the same. I lived a good life, however..."
+    "(She looks over at you with a smile)"
+    show h happy at lower_left
+    h "I hope that I can spend the next life with her."
+    show i happy at lower_right
+    i "I know that you’ll be reunited one day. That I promise."
+
+
+    
     stop music
     $ arc = "Guoliang"
     $ Hana = True
@@ -1031,30 +1158,30 @@ label lillies:
     show h happy at lower_left
     h "Yes, thank you! I guess I’ll gather up my basket for the market then!"
     hide h
-    "You start to walk away, watching as Hana gathers her things and heads into the town center. As soon as she’s out of eyesight, you transform into a small bird, and fly towards the lily field."
+    "I start to walk away, watching as Hana gathers her things and heads into the town center. As soon as she’s out of eyesight, I transform into a small bird, and fly towards the lily field."
     hide i
     scene bg grassy field
-    "(You fly over, looking for a good patch of lilies, until you find a beautiful group of white lilies, shining like the moonlight.)"
-    "Perfect! Whoever she’s giving these two will love them!"
+    "(I fly over, looking for a good patch of lilies, until I find a beautiful group of white lilies, shining like the moonlight.)"
+    i "Perfect! Whoever she’s giving these two will love them!"
     show i neutral at lower_right
-    "(Landing close to them, you lightly dust off your clothes, and start picking a few of them. As you gather a few of them, you feel a voice from behind you.) "
+    "(Landing close to them, I lightly dust off my clothes, and start picking a few of them. As I gather a few of them, I feel a voice from behind you.) "
     s "Oh… Hana still gets those?"
-    "(If you were a mortal, the spirit’s voice would’ve made you jump. Thankfully, you’re fairly used to the deceased and their behavior.)"
+    "(If I were a mortal, the spirit’s voice would’ve made me jump. Thankfully, I'm fairly used to the deceased and their behavior.)"
     show i happy at lower_right
     i "Ah! Hello, you know Hana?"
     s "Mmm… I do. Or, I did."
-    "(The spirit’s voice echoes around you, a hollow, faint sound. Then there’s a quiet laugh that echoes for a moment.)"
+    "(The spirit’s voice echoes around me, a hollow, faint sound. Then there’s a quiet laugh that echoes for a moment.)"
     s "How in the world did she get a god to do her errands for her?"
     i "Ah! Well, I was tasked with helping the people of this town, and answering their prayers. I guess her prayer was to prepare for some special event today, and it must be pretty important!"
     s "So she… she still-"
-    "(The spirit pauses, thinking for a moment, and then looks at you and speaks a single word.)"
+    "(The spirit pauses, thinking for a moment, and then looks at me and speaks a single word.)"
     s "Oh."
     show i neutral at lower_right
     i "Is…everything ok?"
     hide s
-    "(You look around, but the spirit is already disappearing.)"
+    "(I look around, but the spirit is already disappearing.)"
     i "(Hmm, frustrating. I should check in with Hana when I get back.)"
-    "Gathering your things, you make sure you’ve gathered plenty of lilies, and start to fly back to Hana."
+    "Gathering my things, I make sure I've gathered plenty of lilies, and start to fly back to Hana."
     hide i
     return
 
@@ -1069,10 +1196,115 @@ label market:
     scene bg market
     show i neutral at lower_right
     i "(Hmm, so the list here should have everything, now if I can just actually find it all…)"
-    "You look over the list, trying to make a mental map of where you would find everything and what to get first."
+    "I look over the list, trying to make a mental map of where I would find everything and what to get first."
     i "I think I’ll start with getting the stuff for the dough!"
+    "I go around, greeting some townspeople I've seen praying to me in the few days
+since I’ve been here. As I gather up the first few ingredients, I hear a voice
+whisper in my ear."
+    s "Are you... helping Hana?"
+    i "Hmm? Yes, why do you ask?"
+    "(Though I can’t see the spirit, I feel a pleasant aura radiating from them, perhaps
+happy that I’m helping Hana.)"
+    s "I...hope she’s doing ok..."
+    "(I go to respond, but feel the spirit’s aura immediately dissipate after talking to me)"
+    i "Hmmm, was that one of Hana’s loved ones?"
+    "(I get the rest of the ingredients, and start to head back to Hana, slightly worried I
+took too long.)"
+    scene bg street
+    "(As soon as I arrive back on Hana’s front porch she turns around,
+smiling.)"
+    show i happy at lower_right
+    show h happy at lower_left
+    "(Placing the flowers down, I help Hana with putting down the bags of ingredients she got,
+and start prepping the flowers to be arranged.)"
     return
 
+label decorations:
+    show i happy at lower_right
+    i "Let’s get some decorations!"
+    "(Getting my things, Hana and I head to the market in search of candles, flowers,
+and other decorations.)"
+    hide i
+    hide h
+    scene bg market
+    show i neutral at lower_right
+    show h neutral at lower_left
+    "(Hana and I arrive at the market, picking up a few candles that look good enough
+for a proper memorial.)"
+    i "Do these look good so far Hana?"
+    show h happy at lower_left
+    h "Yes, they look lovely!"
+    i "What else do you think we should get for the memorial?"
+    "(Hana thinks for a moment, and then smiles and leads me towards some stationary supplies.)"
+    h "What if I wrote her a letter?"
+    show i happy at lower_right
+    i "That would be beautiful!"
+    "(Picking up some supplies and paper that looks sufficiently elegant, Hana and I head back to her house.)"
+    scene Street
+    show h neutral at lower_left
+    h "What should I write- where do I even begin?"
+    i "You could tell her how you feel?"
+    "(Hana laughs and smiles.)"
+    show h happy at lower_left
+    h "My entire life I couldn’t tell her, and only now that she’s gone I finally tell her, that seems like a sick joke."
+    show i sad at lower_right
+    i "Ah! Apologies I didn’t mean to-"
+    h "No, no, I think it would be nice! It would maybe give me a little closure with this. Thank you."
+    "(I sit and watch as Hana writes down a letter to Kuniko, offering little bits of advice and encouragement. And when she’s done, we get ready to head to the memorial.)"
+    scene bg grassy feild 
+    show h neutral at lower_left
+    h "Thank you, again. Can you hand me the rest of what we’ve brought?"
+    "I handed over the candles and decorations we bought. Hana sets them down,
+and organizes them around Kuniko’s memorial. Very gently, she takes out the
+letter she wrote to her, and holds it to her heart."
+    h "Are you... sure that it’s not too much? Leaving a love letter like this for
+her?"
+    show i happy at lower_right
+    i "Of course not."
+    "(Reassured, Hana places a single kiss on the letter, and places it down on the
+memorial.)"
+    return 
+
+label gift:
+    show i happy at lower_right
+    i "What if I helped you pick out a gift?"
+    show h happy at lower_left
+    h "That sounds lovely, thank you."
+    "Getting my things, Hana and I head to the market to find a perfect gift for Kuniko."
+    hide i
+    hide h
+    scene bg market
+    show i neutral at lower_right
+    show h neutral at lower_left
+    "(Hana and I arrive at the market, bouncing from store to store to find something good for Kuniko, but Hana is very specific with what the item needs to be. I pick up a nice necklace with a green gemstone being offered, and show it to Hana.)"
+    show i happy at lower_right
+    i "Here, what about this?"
+    h "Hmm, no she never really liked green. Or most jewelry, for that matter... but maybe something simple would be nice?"
+    "(Hana stands there, thinking for a moment, before muttering something barely audible.)"
+    show h happy at lower_left
+    h "Well... we had matching bracelets as kids... what if-"
+    "(An idea pops into my head, and I give Hana an excuse as I start heading towards the fancier side of the jewelry section of the market. I stumble upon a stand with matching rings meant for couples, and quickly call Hana over.)"
+    h "Again, I don’t know if jewelry is really her style- oh."
+    show i happy at lower_right
+    i "Is this a fitting gift?"
+    "(Tears form in Hana’s eyes as she places a hand over her mouth and nods, and with her confirmation I buy a pair from the salesclerk. With the gift bought, we head out towards Kuniko’s memorial.)"
+    scene bg grassy field
+    "Hana and I stand at Kuniko’s memorial, getting everything we’ve brought ready."
+    show i neutral at lower_right
+    show h sad at lower_left
+    h "Thank you, again. Can you hand me the rest of what we’ve brought?"
+    "(I finish getting the food and flowers placed down near the memorial, and Hana
+takes out the little gift box containing her and Kuniko’s rings. With shaky hands,
+she opens it, takes out the ring meant for her, and closes the box.)"
+    h "Is this truly alright? What if this is too forward or strange? I mean I haven’t
+even... confessed to her?"
+    show i happy at lower_right
+    i "Isn’t this gesture enough of a confession? I think she would understand
+what you’re saying."
+    show h happy at lower_left
+    h "Hmm... you’re right!"
+    "(Hana closes the box, and places it down in the center of Kuniko’s memorial. )"
+    return
 
 label transition:
     play music "once_upon_a_time_loop.ogg" volume 0.7 loop
