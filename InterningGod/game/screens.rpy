@@ -317,7 +317,7 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+        textbutton _("Credit") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -353,7 +353,7 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
-    add gui.main_menu_background
+    add "cover.jpg" xalign 1.001 zoom 1.19
 
     ## This empty frame darkens the main menu.
     frame:
@@ -546,7 +546,7 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    use game_menu(_("Credit"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -558,6 +558,15 @@ screen about():
             ## gui.about is usually set in options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
+            text _("Writers: Jesse Sison, Seren Becker")
+            text _("Artists: Daphnne Cheng, Alexa Medina, David Carroll")
+            text _("Programmers: Marshall Ye, David Carroll")
+            text _("Music & Sound Effect: Likha Pulido")
+            text _("Initial Concept: Daphnne Cheng")
+            text _("Project Management: Marshall Ye, David Carroll")
+            text _(" ")
+            
+
 
             text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
